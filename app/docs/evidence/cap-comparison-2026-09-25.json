@@ -1,0 +1,81 @@
+{
+  "before": [
+    {
+      "id": 1,
+      "next_chunk_start": 27.071916374989087,
+      "next_first_partial_delay": 2.151399708003737,
+      "source_final_delay": 1.7986909160099458,
+      "translation_final_delay": 7.0033448330068495,
+      "gap_to_next_chunk_partial": 2.6161078750155866
+    },
+    {
+      "id": 2,
+      "next_chunk_start": 38.77209329098696,
+      "next_first_partial_delay": 2.8054996250139084,
+      "source_final_delay": 2.364582584006712,
+      "translation_final_delay": 6.2523059170052875,
+      "gap_to_next_chunk_partial": 2.9705420829996
+    }
+  ],
+  "after": [
+    {
+      "id": 1,
+      "next_chunk_start": 27.00641295799869,
+      "next_first_partial_delay": 1.5962085829814896,
+      "source_final_delay": 1.2698721670021769,
+      "translation_final_delay": 5.334990791976452,
+      "gap_to_next_chunk_partial": 1.8908068329910748
+    },
+    {
+      "id": 2,
+      "next_chunk_start": 38.706910540990066,
+      "next_first_partial_delay": 2.8476932919875253,
+      "source_final_delay": 1.4818375839968212,
+      "translation_final_delay": 6.644190208986402,
+      "gap_to_next_chunk_partial": 3.7936072500015143
+    }
+  ],
+  "six_second_cap": [
+    {
+      "id": 2,
+      "next_first_partial_delay": 1.772220750019187,
+      "gap_to_next_chunk_partial": 1.8102038330107462
+    },
+    {
+      "id": 3,
+      "next_first_partial_delay": 1.0782642500125803,
+      "gap_to_next_chunk_partial": 1.558062666998012
+    },
+    {
+      "id": 4,
+      "next_first_partial_delay": 0.9358920419763308,
+      "gap_to_next_chunk_partial": 1.5404272500018124
+    },
+    {
+      "id": 5,
+      "next_first_partial_delay": 0.9350613749993499,
+      "gap_to_next_chunk_partial": 1.2834915829880629
+    },
+    {
+      "id": 6,
+      "next_first_partial_delay": 2.86774654200417,
+      "gap_to_next_chunk_partial": 3.3127454170025885
+    }
+  ],
+  "cancellable_previews": [
+    {
+      "id": 1,
+      "next_first_partial_delay": 0.7276625420199707,
+      "gap_to_next_chunk_partial": 1.6774389590136707,
+      "source_final_delay": 0.42156079201959074,
+      "translation_final_delay": 4.366546583012678
+    },
+    {
+      "id": 2,
+      "next_first_partial_delay": 0.8683150420256425,
+      "gap_to_next_chunk_partial": 1.4800952500081621,
+      "source_final_delay": 0.5456295420008246,
+      "translation_final_delay": 4.476735708012711
+    }
+  ]
+}

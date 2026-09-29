@@ -1,0 +1,781 @@
+[
+  [
+    0.9541545829852112,
+    {
+      "type": "status",
+      "state": "ready",
+      "message": "Parakeet ASR model ready: mlx-community/parakeet-tdt-0.6b-v3"
+    }
+  ],
+  [
+    15.161547083000187,
+    {
+      "type": "speech_start",
+      "utterance_id": 1
+    }
+  ],
+  [
+    16.541623708006227,
+    {
+      "type": "partial",
+      "utterance_id": 1,
+      "original": "How can",
+      "translation": ""
+    }
+  ],
+  [
+    16.79921800000011,
+    {
+      "type": "partial",
+      "utterance_id": 1,
+      "original": "How can I get to the station?",
+      "translation": ""
+    }
+  ],
+  [
+    17.085923874983564,
+    {
+      "type": "partial",
+      "utterance_id": 1,
+      "original": "How can I get to the station?",
+      "translation": ""
+    }
+  ],
+  [
+    17.2743308749923,
+    {
+      "type": "partial",
+      "utterance_id": 1,
+      "original": "How can I get to the station? I",
+      "translation": ""
+    }
+  ],
+  [
+    17.461593291984173,
+    {
+      "type": "partial",
+      "utterance_id": 1,
+      "original": "How can I get to the station? I immediately.",
+      "translation": ""
+    }
+  ],
+  [
+    17.735097583004972,
+    {
+      "type": "partial",
+      "utterance_id": 1,
+      "original": "How can I get to the station? I am meeting Amy.",
+      "translation": ""
+    }
+  ],
+  [
+    17.996969208004884,
+    {
+      "type": "partial",
+      "utterance_id": 1,
+      "original": "How can I get to the station? I am meeting Amy and",
+      "translation": ""
+    }
+  ],
+  [
+    18.247442958003376,
+    {
+      "type": "partial",
+      "utterance_id": 1,
+      "original": "How can I get to the station? I am meeting Amy and Morgan.",
+      "translation": ""
+    }
+  ],
+  [
+    18.532761749986093,
+    {
+      "type": "partial",
+      "utterance_id": 1,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near the station.",
+      "translation": ""
+    }
+  ],
+  [
+    18.78005149998353,
+    {
+      "type": "partial",
+      "utterance_id": 1,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surrey.",
+      "translation": ""
+    }
+  ],
+  [
+    19.17235554198851,
+    {
+      "type": "partial",
+      "utterance_id": 1,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surreal.",
+      "translation": ""
+    }
+  ],
+  [
+    19.66695820799214,
+    {
+      "type": "partial",
+      "utterance_id": 1,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surreal Coffee.",
+      "translation": ""
+    }
+  ],
+  [
+    20.246598541998537,
+    {
+      "type": "partial",
+      "utterance_id": 1,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surreal Coffee after the station.",
+      "translation": ""
+    }
+  ],
+  [
+    20.785485917003825,
+    {
+      "type": "speech_start",
+      "utterance_id": 2
+    }
+  ],
+  [
+    21.57679120800458,
+    {
+      "type": "final",
+      "utterance_id": 1,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near surreal coffee after the talk.",
+      "translation": "",
+      "commit_reason": "silero_end",
+      "last_audio_frame_unix_seconds": 1790314039.6116989
+    }
+  ],
+  [
+    21.920449124998413,
+    {
+      "type": "partial",
+      "utterance_id": 2,
+      "original": "How can I get to the first time?",
+      "translation": ""
+    }
+  ],
+  [
+    22.261003249994246,
+    {
+      "type": "partial",
+      "utterance_id": 2,
+      "original": "How can I get to the",
+      "translation": ""
+    }
+  ],
+  [
+    22.553147208003793,
+    {
+      "type": "partial",
+      "utterance_id": 2,
+      "original": "How can I get to the station?",
+      "translation": ""
+    }
+  ],
+  [
+    22.854910291993292,
+    {
+      "type": "partial",
+      "utterance_id": 2,
+      "original": "How can I get to the station?",
+      "translation": ""
+    }
+  ],
+  [
+    23.203422457998386,
+    {
+      "type": "partial",
+      "utterance_id": 2,
+      "original": "How can I get to the station? I am.",
+      "translation": ""
+    }
+  ],
+  [
+    23.615851332986495,
+    {
+      "type": "partial",
+      "utterance_id": 2,
+      "original": "How can I get to the station? I am.",
+      "translation": ""
+    }
+  ],
+  [
+    24.04078558299807,
+    {
+      "type": "partial",
+      "utterance_id": 2,
+      "original": "How can I get to the station? I am meeting Amy and",
+      "translation": ""
+    }
+  ],
+  [
+    24.503113916987786,
+    {
+      "type": "partial",
+      "utterance_id": 2,
+      "original": "How can I get to the station? I am meeting Amy and Morgan.",
+      "translation": ""
+    }
+  ],
+  [
+    25.046884832991054,
+    {
+      "type": "partial",
+      "utterance_id": 2,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surround.",
+      "translation": ""
+    }
+  ],
+  [
+    25.53111754200654,
+    {
+      "type": "partial",
+      "utterance_id": 2,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surreal Coffee.",
+      "translation": ""
+    }
+  ],
+  [
+    26.136114499997348,
+    {
+      "type": "partial",
+      "utterance_id": 2,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near surreal coffee after the station.",
+      "translation": ""
+    }
+  ],
+  [
+    26.54637416699552,
+    {
+      "type": "speech_start",
+      "utterance_id": 3
+    }
+  ],
+  [
+    27.345439291995717,
+    {
+      "type": "final",
+      "utterance_id": 2,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surreal Coffee after the talk.",
+      "translation": "",
+      "commit_reason": "silero_end",
+      "last_audio_frame_unix_seconds": 1790314045.351083
+    }
+  ],
+  [
+    27.62997358298162,
+    {
+      "type": "partial",
+      "utterance_id": 3,
+      "original": "How can I get to the city?",
+      "translation": ""
+    }
+  ],
+  [
+    27.94401579198893,
+    {
+      "type": "partial",
+      "utterance_id": 3,
+      "original": "How can I get to the state?",
+      "translation": ""
+    }
+  ],
+  [
+    28.248139250004897,
+    {
+      "type": "partial",
+      "utterance_id": 3,
+      "original": "How can I get to the station?",
+      "translation": ""
+    }
+  ],
+  [
+    28.540628791990457,
+    {
+      "type": "partial",
+      "utterance_id": 3,
+      "original": "How can I get to the station?",
+      "translation": ""
+    }
+  ],
+  [
+    28.910598166985437,
+    {
+      "type": "partial",
+      "utterance_id": 3,
+      "original": "How can I get to the station? I",
+      "translation": ""
+    }
+  ],
+  [
+    29.319320666982094,
+    {
+      "type": "partial",
+      "utterance_id": 3,
+      "original": "How can I get to the station? I immediately.",
+      "translation": ""
+    }
+  ],
+  [
+    29.345590707991505,
+    {
+      "type": "final",
+      "utterance_id": 1,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near surreal coffee after the talk.",
+      "translation": "\u00bfC\u00f3mo puedo llegar a la estaci\u00f3n? Me voy a encontrar con Amy y Morgan cerca de surreal coffee despu\u00e9s de la charla.",
+      "commit_reason": "silero_end"
+    }
+  ],
+  [
+    29.738293166999938,
+    {
+      "type": "partial",
+      "utterance_id": 3,
+      "original": "How can I get to the station? I am meeting Amy and",
+      "translation": ""
+    }
+  ],
+  [
+    30.1487676249817,
+    {
+      "type": "partial",
+      "utterance_id": 3,
+      "original": "How can I get to the station? I am meeting Amy and Morgan.",
+      "translation": ""
+    }
+  ],
+  [
+    30.659761957998853,
+    {
+      "type": "partial",
+      "utterance_id": 3,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surround.",
+      "translation": ""
+    }
+  ],
+  [
+    31.21028220799053,
+    {
+      "type": "partial",
+      "utterance_id": 3,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surreal Coffee.",
+      "translation": ""
+    }
+  ],
+  [
+    31.86742566700559,
+    {
+      "type": "partial",
+      "utterance_id": 3,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surreal Coffee after the station.",
+      "translation": ""
+    }
+  ],
+  [
+    32.266277916991385,
+    {
+      "type": "speech_start",
+      "utterance_id": 4
+    }
+  ],
+  [
+    33.14170112498687,
+    {
+      "type": "final",
+      "utterance_id": 3,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near surreal coffee after the talk.",
+      "translation": "",
+      "commit_reason": "silero_end",
+      "last_audio_frame_unix_seconds": 1790314051.091576
+    }
+  ],
+  [
+    33.468150625005364,
+    {
+      "type": "partial",
+      "utterance_id": 4,
+      "original": "How can I get to the first one?",
+      "translation": ""
+    }
+  ],
+  [
+    33.830173207999906,
+    {
+      "type": "partial",
+      "utterance_id": 4,
+      "original": "How can I get to the state?",
+      "translation": ""
+    }
+  ],
+  [
+    34.13177129198448,
+    {
+      "type": "partial",
+      "utterance_id": 4,
+      "original": "How can I get to the station?",
+      "translation": ""
+    }
+  ],
+  [
+    34.46225445799064,
+    {
+      "type": "partial",
+      "utterance_id": 4,
+      "original": "How can I get to the station?",
+      "translation": ""
+    }
+  ],
+  [
+    34.80370699998457,
+    {
+      "type": "partial",
+      "utterance_id": 4,
+      "original": "How can I get to the station? I am",
+      "translation": ""
+    }
+  ],
+  [
+    35.084700707986485,
+    {
+      "type": "final",
+      "utterance_id": 2,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surreal Coffee after the talk.",
+      "translation": "\u00bfC\u00f3mo puedo llegar a la estaci\u00f3n? Me voy a encontrar con Amy y Morgan cerca de Surreal Coffee despu\u00e9s de la charla.",
+      "commit_reason": "silero_end"
+    }
+  ],
+  [
+    35.205734041985124,
+    {
+      "type": "partial",
+      "utterance_id": 4,
+      "original": "How can I get to the station? I am meeting.",
+      "translation": ""
+    }
+  ],
+  [
+    35.64518804199179,
+    {
+      "type": "partial",
+      "utterance_id": 4,
+      "original": "How can I get to the station? I am meeting Amy and",
+      "translation": ""
+    }
+  ],
+  [
+    36.10166445799405,
+    {
+      "type": "partial",
+      "utterance_id": 4,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near station.",
+      "translation": ""
+    }
+  ],
+  [
+    36.592557750002015,
+    {
+      "type": "partial",
+      "utterance_id": 4,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Sarina.",
+      "translation": ""
+    }
+  ],
+  [
+    37.13496674998896,
+    {
+      "type": "partial",
+      "utterance_id": 4,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surreal Coffee.",
+      "translation": ""
+    }
+  ],
+  [
+    37.64148829199257,
+    {
+      "type": "partial",
+      "utterance_id": 4,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surreal Coffee after the",
+      "translation": ""
+    }
+  ],
+  [
+    38.006623541994486,
+    {
+      "type": "speech_start",
+      "utterance_id": 5
+    }
+  ],
+  [
+    39.009809582988964,
+    {
+      "type": "final",
+      "utterance_id": 4,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near surreal coffee after the talk.",
+      "translation": "",
+      "commit_reason": "silero_end",
+      "last_audio_frame_unix_seconds": 1790314056.811529
+    }
+  ],
+  [
+    39.32956154199201,
+    {
+      "type": "partial",
+      "utterance_id": 5,
+      "original": "How can I get to the",
+      "translation": ""
+    }
+  ],
+  [
+    39.62999291700544,
+    {
+      "type": "partial",
+      "utterance_id": 5,
+      "original": "How can I get to the station?",
+      "translation": ""
+    }
+  ],
+  [
+    39.92285320800147,
+    {
+      "type": "partial",
+      "utterance_id": 5,
+      "original": "How can I get to the station?",
+      "translation": ""
+    }
+  ],
+  [
+    40.32040962498286,
+    {
+      "type": "partial",
+      "utterance_id": 5,
+      "original": "How can I get to the station? I",
+      "translation": ""
+    }
+  ],
+  [
+    40.70394375000615,
+    {
+      "type": "partial",
+      "utterance_id": 5,
+      "original": "How can I get to the station? I immediately.",
+      "translation": ""
+    }
+  ],
+  [
+    41.14913558299304,
+    {
+      "type": "partial",
+      "utterance_id": 5,
+      "original": "How can I get to the station? I am meeting a",
+      "translation": ""
+    }
+  ],
+  [
+    41.57936991698807,
+    {
+      "type": "partial",
+      "utterance_id": 5,
+      "original": "How can I get to the station? I am meeting Amy and Morgan.",
+      "translation": ""
+    }
+  ],
+  [
+    42.107024875003844,
+    {
+      "type": "partial",
+      "utterance_id": 5,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surround.",
+      "translation": ""
+    }
+  ],
+  [
+    42.60879958298756,
+    {
+      "type": "partial",
+      "utterance_id": 5,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surreal Coffee.",
+      "translation": ""
+    }
+  ],
+  [
+    43.24170483299531,
+    {
+      "type": "partial",
+      "utterance_id": 5,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surreal Coffee afternoon.",
+      "translation": ""
+    }
+  ],
+  [
+    43.7264326250006,
+    {
+      "type": "speech_start",
+      "utterance_id": 6
+    }
+  ],
+  [
+    44.46114045800641,
+    {
+      "type": "final",
+      "utterance_id": 5,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near surreal coffee after the talk.",
+      "translation": "",
+      "commit_reason": "silero_end",
+      "last_audio_frame_unix_seconds": 1790314062.551857
+    }
+  ],
+  [
+    44.78063954200479,
+    {
+      "type": "partial",
+      "utterance_id": 6,
+      "original": "How can I get it?",
+      "translation": ""
+    }
+  ],
+  [
+    45.10856204200536,
+    {
+      "type": "partial",
+      "utterance_id": 6,
+      "original": "How can I get to the",
+      "translation": ""
+    }
+  ],
+  [
+    45.40242624998791,
+    {
+      "type": "partial",
+      "utterance_id": 6,
+      "original": "How can I get to the station?",
+      "translation": ""
+    }
+  ],
+  [
+    45.71156299998984,
+    {
+      "type": "partial",
+      "utterance_id": 6,
+      "original": "How can I get to the station?",
+      "translation": ""
+    }
+  ],
+  [
+    46.05268008299754,
+    {
+      "type": "partial",
+      "utterance_id": 6,
+      "original": "How can I get to the station? I",
+      "translation": ""
+    }
+  ],
+  [
+    46.42529558300157,
+    {
+      "type": "partial",
+      "utterance_id": 6,
+      "original": "How can I get to the station? I immediately.",
+      "translation": ""
+    }
+  ],
+  [
+    46.776077957998496,
+    {
+      "type": "partial",
+      "utterance_id": 6,
+      "original": "How can I get to the station? I am meeting a",
+      "translation": ""
+    }
+  ],
+  [
+    47.18855491699651,
+    {
+      "type": "partial",
+      "utterance_id": 6,
+      "original": "How can I get to the station? I am meeting Amy and Morgan.",
+      "translation": ""
+    }
+  ],
+  [
+    47.72232433297904,
+    {
+      "type": "partial",
+      "utterance_id": 6,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near the station.",
+      "translation": ""
+    }
+  ],
+  [
+    48.23187424999196,
+    {
+      "type": "partial",
+      "utterance_id": 6,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surreal.",
+      "translation": ""
+    }
+  ],
+  [
+    48.76954133299296,
+    {
+      "type": "partial",
+      "utterance_id": 6,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surreal Coffee out.",
+      "translation": ""
+    }
+  ],
+  [
+    49.96142658300232,
+    {
+      "type": "final",
+      "utterance_id": 6,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surreal Coffee after the talk.",
+      "translation": "",
+      "commit_reason": "silero_end",
+      "last_audio_frame_unix_seconds": 1790314068.291043
+    }
+  ],
+  [
+    51.96447487498517,
+    {
+      "type": "final",
+      "utterance_id": 3,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near surreal coffee after the talk.",
+      "translation": "\u00bfC\u00f3mo puedo llegar a la estaci\u00f3n? Me voy a encontrar con Amy y Morgan cerca de surreal coffee despu\u00e9s de la charla.",
+      "commit_reason": "silero_end"
+    }
+  ],
+  [
+    53.3080304999894,
+    {
+      "type": "final",
+      "utterance_id": 4,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near surreal coffee after the talk.",
+      "translation": "\u00bfC\u00f3mo puedo llegar a la estaci\u00f3n? Me voy a encontrar con Amy y Morgan cerca de surreal coffee despu\u00e9s de la charla.",
+      "commit_reason": "silero_end"
+    }
+  ],
+  [
+    54.628313624998555,
+    {
+      "type": "final",
+      "utterance_id": 5,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near surreal coffee after the talk.",
+      "translation": "\u00bfC\u00f3mo puedo llegar a la estaci\u00f3n? Me voy a encontrar con Amy y Morgan cerca de surreal coffee despu\u00e9s de la charla.",
+      "commit_reason": "silero_end"
+    }
+  ],
+  [
+    55.94979608300491,
+    {
+      "type": "final",
+      "utterance_id": 6,
+      "original": "How can I get to the station? I am meeting Amy and Morgan near Surreal Coffee after the talk.",
+      "translation": "\u00bfC\u00f3mo puedo llegar a la estaci\u00f3n? Me voy a encontrar con Amy y Morgan cerca de Surreal Coffee despu\u00e9s de la charla.",
+      "commit_reason": "silero_end"
+    }
+  ]
+]

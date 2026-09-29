@@ -1,0 +1,69 @@
+{
+  "duration_seconds": 90.0,
+  "final_count": 41,
+  "error_count": 0,
+  "rss_bytes": {
+    "min": 1465450496.0,
+    "median": 1488977920.0,
+    "p95": 1491750092.8,
+    "max": 1492221952.0
+  },
+  "temp_file_count": {
+    "min": 0.0,
+    "median": 0.0,
+    "p95": 1.0,
+    "max": 1.0
+  },
+  "archive_entry_count": {
+    "min": 94.0,
+    "median": 94.0,
+    "p95": 94.0,
+    "max": 94.0
+  },
+  "final_latency_seconds": {
+    "min": 0.8997158750134986,
+    "median": 2.02823858402553,
+    "p95": 4.324203458003467,
+    "max": 5.751963958988199
+  },
+  "silence_to_final_seconds": {
+    "min": 0.15143609046936035,
+    "median": 0.3100571632385254,
+    "p95": 1.9374570846557617,
+    "max": 2.6989338397979736
+  },
+  "commit_reason_counts": {
+    "silero_end": 29,
+    "punctuation": 12
+  },
+  "commit_reason_percentages": {
+    "punctuation": 29.268292682926827,
+    "silero_end": 70.73170731707317
+  },
+  "early_final_latency_seconds": {
+    "min": 0.8997158750134986,
+    "median": 2.02823858402553,
+    "p95": 4.324203458003467,
+    "max": 5.751963958988199
+  },
+  "late_final_latency_seconds": {
+    "min": 0.8997158750134986,
+    "median": 2.02823858402553,
+    "p95": 4.324203458003467,
+    "max": 5.751963958988199
+  },
+  "status_events": [
+    {
+      "elapsed_seconds": 0.8200008750136476,
+      "payload": {
+        "type": "status",
+        "state": "ready",
+        "message": "Parakeet ASR model ready: mlx-community/parakeet-tdt-0.6b-v2"
+      }
+    }
+  ],
+  "events": [],
+  "csv_path": "/Users/ed/Documents/GitHub/livetr3/app/backend/scripts/soak_2026-05-05T23-44-40-0400.csv",
+  "backend_log_path": "/Users/ed/Documents/GitHub/livetr3/app/backend/scripts/soak_2026-05-05T23-44-40-0400.backend.log",
+  "failures": []
+}

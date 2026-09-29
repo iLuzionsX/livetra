@@ -1,0 +1,67 @@
+{
+  "duration_seconds": 90.0,
+  "final_count": 30,
+  "error_count": 0,
+  "rss_bytes": {
+    "min": 2200551424.0,
+    "median": 2205237248.0,
+    "p95": 2321149132.7999997,
+    "max": 2350792704.0
+  },
+  "temp_file_count": {
+    "min": 0.0,
+    "median": 1.0,
+    "p95": 1.0,
+    "max": 1.0
+  },
+  "archive_entry_count": {
+    "min": 86.0,
+    "median": 86.0,
+    "p95": 86.0,
+    "max": 86.0
+  },
+  "final_latency_seconds": {
+    "min": 3.894945332998759,
+    "median": 5.012704458997177,
+    "p95": 7.018296256391477,
+    "max": 7.066316249998636
+  },
+  "silence_to_final_seconds": {
+    "min": 2.208282709121704,
+    "median": 3.159014582633972,
+    "p95": 3.376507914066315,
+    "max": 3.430244207382202
+  },
+  "commit_reason_counts": {
+    "silero_end": 30
+  },
+  "commit_reason_percentages": {
+    "silero_end": 100.0
+  },
+  "early_final_latency_seconds": {
+    "min": 3.894945332998759,
+    "median": 5.012704458997177,
+    "p95": 7.018296256391477,
+    "max": 7.066316249998636
+  },
+  "late_final_latency_seconds": {
+    "min": 3.894945332998759,
+    "median": 5.012704458997177,
+    "p95": 7.018296256391477,
+    "max": 7.066316249998636
+  },
+  "status_events": [
+    {
+      "elapsed_seconds": 1.0561350829957519,
+      "payload": {
+        "type": "status",
+        "state": "ready",
+        "message": "Model worker ready"
+      }
+    }
+  ],
+  "events": [],
+  "csv_path": "/Users/ed/Documents/GitHub/livetr3/app/backend/scripts/soak_2026-04-28T12-55-46-0400.csv",
+  "backend_log_path": "/Users/ed/Documents/GitHub/livetr3/app/backend/scripts/soak_2026-04-28T12-55-46-0400.backend.log",
+  "failures": []
+}

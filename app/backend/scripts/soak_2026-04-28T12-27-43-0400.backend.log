@@ -1,0 +1,59 @@
+INFO:     Started server process [66902]
+INFO:     Waiting for application startup.
+
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]
+Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 46204.08it/s]
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8766 (Press CTRL+C to quit)
+INFO:     127.0.0.1:65527 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65528 - "WebSocket /" [accepted]
+INFO:     connection open
+INFO:     final_commit reason=silero_end utterance_id=1 audio_seconds=5.600
+INFO:     final_commit reason=silero_end utterance_id=2 audio_seconds=5.820
+INFO:     final_commit reason=silero_end utterance_id=3 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=4 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=5 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=6 audio_seconds=5.820
+INFO:     final_commit reason=silero_end utterance_id=7 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=8 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=9 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=10 audio_seconds=5.820
+INFO:     final_commit reason=silero_end utterance_id=11 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=12 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=13 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=14 audio_seconds=5.820
+INFO:     final_commit reason=silero_end utterance_id=15 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=16 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=17 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=18 audio_seconds=5.820
+INFO:     final_commit reason=silero_end utterance_id=19 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=20 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=21 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=22 audio_seconds=5.820
+INFO:     final_commit reason=silero_end utterance_id=23 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=24 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=25 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=26 audio_seconds=5.820
+INFO:     final_commit reason=silero_end utterance_id=27 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=28 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=29 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=30 audio_seconds=5.820
+INFO:     final_commit reason=silero_end utterance_id=31 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=32 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=33 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=34 audio_seconds=5.820
+INFO:     final_commit reason=silero_end utterance_id=35 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=36 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=37 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=38 audio_seconds=5.820
+INFO:     final_commit reason=silero_end utterance_id=39 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=40 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=41 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=42 audio_seconds=5.820
+INFO:     final_commit reason=silero_end utterance_id=43 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=44 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=45 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=46 audio_seconds=5.820
+INFO:     final_commit reason=silero_end utterance_id=47 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=48 audio_seconds=5.840
+INFO:     final_commit reason=silero_end utterance_id=49 audio_seconds=5.580

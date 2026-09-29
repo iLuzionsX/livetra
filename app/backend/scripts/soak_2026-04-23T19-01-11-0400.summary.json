@@ -1,0 +1,86 @@
+{
+  "duration_seconds": 360.0,
+  "final_count": 58,
+  "error_count": 0,
+  "rss_bytes": {
+    "min": 307445760.0,
+    "median": 9856172032.0,
+    "p95": 10287157248.0,
+    "max": 10287169536.0
+  },
+  "temp_file_count": {
+    "min": 0.0,
+    "median": 1.5,
+    "p95": 2.0,
+    "max": 2.0
+  },
+  "archive_entry_count": {
+    "min": 10.0,
+    "median": 10.0,
+    "p95": 10.0,
+    "max": 10.0
+  },
+  "final_latency_seconds": {
+    "min": 5.069629750001695,
+    "median": 10.361283812500915,
+    "p95": 13.730822998200251,
+    "max": 21.87138812500052
+  },
+  "early_final_latency_seconds": {
+    "min": 9.332528874998388,
+    "median": 10.325518270999964,
+    "p95": 15.39466182300066,
+    "max": 21.87138812500052
+  },
+  "late_final_latency_seconds": {
+    "min": 5.069629750001695,
+    "median": 10.268713749999733,
+    "p95": 14.840048881400518,
+    "max": 21.87138812500052
+  },
+  "status_events": [
+    {
+      "elapsed_seconds": 0.7380534580006497,
+      "payload": {
+        "type": "status",
+        "state": "ready",
+        "message": "Model worker ready"
+      }
+    },
+    {
+      "elapsed_seconds": 181.03480558299998,
+      "payload": {
+        "type": "status",
+        "state": "recovering",
+        "message": "Model worker crashed during ast; reloading once"
+      }
+    },
+    {
+      "elapsed_seconds": 183.03895654200096,
+      "payload": {
+        "type": "status",
+        "state": "starting",
+        "message": "Loading Gemma model worker"
+      }
+    },
+    {
+      "elapsed_seconds": 189.4738701669994,
+      "payload": {
+        "type": "status",
+        "state": "ready",
+        "message": "Model worker ready"
+      }
+    }
+  ],
+  "events": [
+    {
+      "event": "fault_injected",
+      "elapsed_seconds": 180.7481938330002,
+      "detail": "SIGTERM pid=33991"
+    }
+  ],
+  "fault_recovery_seconds": 12.20324787500067,
+  "csv_path": "/Users/ed/Documents/GitHub/livetr3/app/backend/scripts/soak_2026-04-23T19-01-11-0400.csv",
+  "backend_log_path": "/Users/ed/Documents/GitHub/livetr3/app/backend/scripts/soak_2026-04-23T19-01-11-0400.backend.log",
+  "failures": []
+}

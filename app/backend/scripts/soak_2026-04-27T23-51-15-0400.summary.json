@@ -1,0 +1,167 @@
+{
+  "duration_seconds": 300.0,
+  "final_count": 27,
+  "error_count": 4,
+  "rss_bytes": {
+    "min": 220217344.0,
+    "median": 4608049152.0,
+    "p95": 5748375552.0,
+    "max": 6058885120.0
+  },
+  "temp_file_count": {
+    "min": 1.0,
+    "median": 2.0,
+    "p95": 3.0,
+    "max": 3.0
+  },
+  "archive_entry_count": {
+    "min": 66.0,
+    "median": 66.0,
+    "p95": 66.0,
+    "max": 66.0
+  },
+  "final_latency_seconds": {
+    "min": 5.404740915997536,
+    "median": 11.244062917001429,
+    "p95": 106.31933356699882,
+    "max": 115.63780345900159
+  },
+  "silence_to_final_seconds": {
+    "min": 2.042916774749756,
+    "median": 5.753420829772949,
+    "p95": 1700.3698831796646,
+    "max": 1711.848177909851
+  },
+  "commit_reason_counts": {
+    "punctuation": 1,
+    "silero_end": 26
+  },
+  "commit_reason_percentages": {
+    "punctuation": 3.7037037037037033,
+    "silero_end": 96.29629629629629
+  },
+  "early_final_latency_seconds": {
+    "min": 5.404740915997536,
+    "median": 11.067508584004827,
+    "p95": 86.73918261679937,
+    "max": 93.90480504199513
+  },
+  "late_final_latency_seconds": {
+    "min": 5.404740915997536,
+    "median": 11.244062917001429,
+    "p95": 106.31933356699882,
+    "max": 115.63780345900159
+  },
+  "status_events": [
+    {
+      "elapsed_seconds": 0.8634492090059211,
+      "payload": {
+        "type": "status",
+        "state": "ready",
+        "message": "Model worker ready"
+      }
+    },
+    {
+      "elapsed_seconds": 119.3277919999964,
+      "payload": {
+        "type": "status",
+        "state": "recovering",
+        "message": "AST timed out after 8.0s; reloading model worker"
+      }
+    },
+    {
+      "elapsed_seconds": 121.32852883399755,
+      "payload": {
+        "type": "status",
+        "state": "starting",
+        "message": "Loading Gemma model worker"
+      }
+    },
+    {
+      "elapsed_seconds": 143.21463912499894,
+      "payload": {
+        "type": "status",
+        "state": "ready",
+        "message": "Model worker ready"
+      }
+    },
+    {
+      "elapsed_seconds": 172.49308945900702,
+      "payload": {
+        "type": "status",
+        "state": "recovering",
+        "message": "AST timed out after 15.0s; reloading model worker"
+      }
+    },
+    {
+      "elapsed_seconds": 174.49898829200538,
+      "payload": {
+        "type": "status",
+        "state": "starting",
+        "message": "Loading Gemma model worker"
+      }
+    },
+    {
+      "elapsed_seconds": 196.61350624999614,
+      "payload": {
+        "type": "status",
+        "state": "ready",
+        "message": "Model worker ready"
+      }
+    },
+    {
+      "elapsed_seconds": 225.51181212499796,
+      "payload": {
+        "type": "status",
+        "state": "recovering",
+        "message": "AST timed out after 15.0s; reloading model worker"
+      }
+    },
+    {
+      "elapsed_seconds": 227.51572650000162,
+      "payload": {
+        "type": "status",
+        "state": "starting",
+        "message": "Loading Gemma model worker"
+      }
+    },
+    {
+      "elapsed_seconds": 245.6487937089987,
+      "payload": {
+        "type": "status",
+        "state": "ready",
+        "message": "Model worker ready"
+      }
+    },
+    {
+      "elapsed_seconds": 279.50798391700664,
+      "payload": {
+        "type": "status",
+        "state": "recovering",
+        "message": "AST timed out after 15.0s; reloading model worker"
+      }
+    },
+    {
+      "elapsed_seconds": 281.57225237500097,
+      "payload": {
+        "type": "status",
+        "state": "starting",
+        "message": "Loading Gemma model worker"
+      }
+    },
+    {
+      "elapsed_seconds": 298.4351684590074,
+      "payload": {
+        "type": "status",
+        "state": "ready",
+        "message": "Model worker ready"
+      }
+    }
+  ],
+  "events": [],
+  "csv_path": "/Users/ed/Documents/GitHub/livetr3/app/backend/scripts/soak_2026-04-27T23-51-15-0400.csv",
+  "backend_log_path": "/Users/ed/Documents/GitHub/livetr3/app/backend/scripts/soak_2026-04-27T23-51-15-0400.backend.log",
+  "failures": [
+    "Received 4 error events"
+  ]
+}

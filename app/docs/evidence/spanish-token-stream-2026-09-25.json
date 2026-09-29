@@ -1,0 +1,36 @@
+{
+  "scope": "Recorded speech, six repetitions, 15-second warmup; not a live microphone accuracy test. Prefix preservation subsequently unit tested.",
+  "timings": [
+    {
+      "utterance": 1,
+      "first_spanish": 16.295805792004103,
+      "source_final": 20.852757708024
+    },
+    {
+      "utterance": 2,
+      "first_spanish": 22.583428875019308,
+      "source_final": 26.517499917012174
+    },
+    {
+      "utterance": 3,
+      "first_spanish": 28.258297916996526,
+      "source_final": 32.4141810000001
+    },
+    {
+      "utterance": 4,
+      "first_spanish": 34.280526707996614,
+      "source_final": 37.95999208302237
+    },
+    {
+      "utterance": 5,
+      "first_spanish": 39.68173058301909,
+      "source_final": 43.799744042014936
+    },
+    {
+      "utterance": 6,
+      "first_spanish": 45.512624708004296,
+      "source_final": 49.51244700001553
+    }
+  ],
+  "errors": []
+}

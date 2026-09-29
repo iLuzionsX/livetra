@@ -1,0 +1,8 @@
+elapsed_seconds,rss_bytes,temp_file_count,archive_entry_count,latest_final_latency_seconds,latest_silence_to_final_seconds,latest_commit_reason,new_finals,final_count,error_count,worker_state
+15.822,1465450496,1,94,2.07,0.358,silero_end,1:silero_end:1.937;2:punctuation:0.188;3:silero_end:0.315;4:silero_end:2.699;5:silero_end:2.091;6:silero_end:0.358,6,0,ready
+30.891,1484619776,0,94,2.162,0.525,silero_end,7:punctuation:0.168;8:silero_end:0.316;9:silero_end:0.391;10:silero_end:0.674;11:silero_end:0.525,11,0,ready
+45.911,1486716928,0,94,1.947,0.31,silero_end,12:silero_end:0.803;13:silero_end:0.575;14:punctuation:0.205;15:silero_end:0.526;16:silero_end:0.297;17:punctuation:0.160;18:silero_end:0.326;19:silero_end:0.310,19,0,ready
+60.929,1488977920,0,94,2.351,0.172,punctuation,20:punctuation:0.188;21:silero_end:0.357;22:silero_end:0.297;23:punctuation:0.170;24:silero_end:0.348;25:silero_end:0.318;26:punctuation:0.172,26,0,ready
+75.945,1489682432,0,94,1.933,0.296,silero_end,27:silero_end:0.310;28:silero_end:0.299;29:punctuation:0.172;30:silero_end:0.316;31:silero_end:0.297;32:punctuation:0.169;33:silero_end:0.300;34:silero_end:0.296,34,0,ready
+90.968,1492221952,1,94,2.342,0.151,punctuation,35:punctuation:0.183;37:silero_end:0.319;38:punctuation:0.159;39:silero_end:0.306;40:silero_end:0.314;41:punctuation:0.151,40,0,ready
+105.989,1490649088,0,94,1.236,0.384,silero_end,42:silero_end:0.384,41,0,ready

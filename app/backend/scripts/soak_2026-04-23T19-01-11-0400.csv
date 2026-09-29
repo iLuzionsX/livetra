@@ -1,0 +1,7 @@
+elapsed_seconds,rss_bytes,temp_file_count,archive_entry_count,latest_final_latency_seconds,final_count,error_count,worker_state
+60.741,10287169536,1,10,10.719,8,0,ready
+120.751,10287120384,0,10,10.07,18,0,ready
+180.762,307445760,1,10,10.962,27,0,ready
+240.768,9854353408,2,10,10.078,37,0,ready
+300.776,9856122880,2,10,10.836,46,0,ready
+360.786,9856221184,2,10,10.172,56,0,ready

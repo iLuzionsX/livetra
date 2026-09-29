@@ -1,0 +1,10 @@
+fastapi>=0.115.0
+uvicorn[standard]>=0.34.0
+websockets>=14.0
+pydantic>=2.10.0
+numpy>=2.1.0
+soundfile>=0.12.1
+mlx>=0.22.0
+mlx-vlm>=0.7.3
+python-dotenv>=1.0.1
+silero-vad>=5.1.2

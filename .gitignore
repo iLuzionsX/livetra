@@ -1,0 +1,25 @@
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Build output
+dist/
+
+# macOS
+macos/**/.build/
+
+# Local env overrides
+.env.local
+
+# Generated local smoke-test audio
+app/backend/sample.wav
+
+# Generated backend validation artifacts
+app/backend/scripts/soak_*.backend.log
+app/backend/scripts/soak_*.csv
+app/backend/scripts/soak_*.summary.json
