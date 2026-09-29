@@ -59,12 +59,28 @@ POLISH_PROMPT = (
 )
 
 
+@dataclass(slots=True)
+class DecodeStats:
+    """Cost of one AST decode. Mutable and module-level so it pickles across the process boundary."""
+
+    audio_seconds: float = 0.0
+    max_tokens: int = 0
+    attempts: int = 0
+    generated_tokens: int = 0
+    inference_seconds: float = 0.0
+    queue_seconds: float = 0.0
+    complete: bool = False
+    truncated: bool = False
+    cancelled: bool = False
+
+
 @dataclass(slots=True, frozen=True)
 class ASTResult:
     original: str
     translation: str
     complete: bool
     truncated: bool
+    stats: DecodeStats | None = None
 
 class MLXWorker:
     def __init__(self, temp_wav_root: Path | None = None) -> None:
@@ -143,9 +159,17 @@ class MLXWorker:
                 prompt_text,
                 num_audios=1,
             )
+            stats = DecodeStats(
+                audio_seconds=float(audio_f32_16k.shape[0]) / 16_000,
+                max_tokens=max_tokens,
+            )
+            started_at = time.perf_counter()
+
             def generate_once(token_budget: int) -> ASTResult | None:
                 if cancelled is not None and cancelled():
+                    stats.cancelled = True
                     return None
+                stats.attempts += 1
                 stream = stream_generate(
                     self.model,
                     self.processor,
@@ -162,8 +186,12 @@ class MLXWorker:
                 try:
                     for response in stream:
                         if cancelled is not None and cancelled():
+                            stats.cancelled = True
                             return None
                         latest_response = response
+                        generated = getattr(response, "generation_tokens", None)
+                        if isinstance(generated, int):
+                            stats.generated_tokens = generated
                         piece = getattr(response, "text", None)
                         if isinstance(piece, str):
                             pieces.append(piece)
@@ -180,16 +208,23 @@ class MLXWorker:
                 original, translation = _parse_ast_response(output, tgt, src)
                 truncated = _generation_was_truncated(latest_response, token_budget)
                 complete = bool(original and translation and not truncated)
-                return ASTResult(original, translation, complete, truncated)
+                # Report the attempt that produced the returned text. A retry that
+                # succeeds is not a truncated result; attempts counts the retry.
+                stats.truncated = truncated
+                stats.complete = complete
+                return ASTResult(original, translation, complete, truncated, stats)
 
-            result = generate_once(max_tokens)
-            if result is None:
-                return None
-            if priority == "final" and not result.complete:
-                retry_budget = min(768, max_tokens * 2)
-                if retry_budget > max_tokens:
-                    result = generate_once(retry_budget)
-            return result
+            try:
+                result = generate_once(max_tokens)
+                if result is None:
+                    return None
+                if priority == "final" and not result.complete:
+                    retry_budget = min(768, max_tokens * 2)
+                    if retry_budget > max_tokens:
+                        result = generate_once(retry_budget)
+                return result
+            finally:
+                stats.inference_seconds = time.perf_counter() - started_at
         finally:
             _safe_unlink(wav_path)
 
@@ -326,6 +361,7 @@ class _QueuedJob:
     payload: dict = field(compare=False)
     enqueued_at: float = field(default_factory=time.monotonic, compare=False)
     on_progress: Callable[[str], Awaitable[None]] | None = field(default=None, compare=False)
+    on_stats: Callable[[DecodeStats], None] | None = field(default=None, compare=False)
 
 
 class MLXWorkerService:
@@ -410,6 +446,7 @@ class MLXWorkerService:
         code_switching_enabled: bool,
         max_tokens: int,
         on_progress: Callable[[str], Awaitable[None]] | None = None,
+        on_stats: Callable[[DecodeStats], None] | None = None,
     ) -> ASTResult | None:
         loop = asyncio.get_running_loop()
         future: asyncio.Future = loop.create_future()
@@ -419,6 +456,7 @@ class MLXWorkerService:
             kind="ast",
             future=future,
             on_progress=on_progress,
+            on_stats=on_stats,
             payload={
                 "priority": priority,
                 "utterance_id": utterance_id,
@@ -524,6 +562,8 @@ class MLXWorkerService:
                 dispatched_at = time.monotonic()
                 result = await self._execute_job(job)
                 finished_at = time.monotonic()
+                if job.on_stats is not None:
+                    job.on_stats(self._job_stats(job, result, dispatched_at, finished_at))
                 if finished_at - job.enqueued_at >= 1.0:
                     logger.warning(
                         "slow_inference engine=gemma priority=%s utterance_id=%s queue_seconds=%.3f inference_seconds=%.3f",
@@ -539,6 +579,32 @@ class MLXWorkerService:
                 self._active_job_kind = None
                 self._active_job = None
                 self._queue.task_done()
+
+    def _job_stats(
+        self,
+        job: _QueuedJob,
+        result: object,
+        dispatched_at: float,
+        finished_at: float,
+    ) -> DecodeStats:
+        """Cost of one finished AST job, including ones cancelled to no result.
+
+        A preview retired by a commit returns no result, so without this its GPU
+        time is invisible, and invisible work is the work nobody optimises.
+        """
+        queue_seconds = round(max(0.0, dispatched_at - job.enqueued_at), 3)
+        inference_seconds = round(max(0.0, finished_at - dispatched_at), 3)
+        if isinstance(result, ASTResult) and result.stats is not None:
+            result.stats.queue_seconds = queue_seconds
+            return result.stats
+        audio = job.payload.get("audio_f32_16k")
+        return DecodeStats(
+            audio_seconds=(float(audio.size) / 16_000) if audio is not None else 0.0,
+            max_tokens=int(job.payload.get("max_tokens", 0)),
+            inference_seconds=inference_seconds,
+            queue_seconds=queue_seconds,
+            cancelled=job.payload.get("priority") == "partial",
+        )
 
     def _should_skip_job(self, job: _QueuedJob) -> bool:
         if job.payload.get("priority") != "partial":

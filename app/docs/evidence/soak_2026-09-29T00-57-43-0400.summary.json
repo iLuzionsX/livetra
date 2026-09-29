@@ -1,0 +1,167 @@
+{
+  "duration_seconds": 240.0,
+  "final_count": 69,
+  "error_count": 0,
+  "rss_bytes": {
+    "min": 2360033280.0,
+    "median": 2368520192.0,
+    "p95": 2368801996.8,
+    "max": 2368847872.0
+  },
+  "temp_file_count": {
+    "min": 0.0,
+    "median": 0.0,
+    "p95": 0.0,
+    "max": 0.0
+  },
+  "archive_entry_count": {
+    "min": 291.0,
+    "median": 291.0,
+    "p95": 291.0,
+    "max": 291.0
+  },
+  "final_latency_seconds": {
+    "min": 3.610489916987717,
+    "median": 4.4677051669568755,
+    "p95": 6.238170300028286,
+    "max": 6.99882337503368
+  },
+  "silence_to_final_seconds": {
+    "min": 1.3740730285644531,
+    "median": 1.7611830234527588,
+    "p95": 3.0277489662170405,
+    "max": 4.047067165374756
+  },
+  "commit_reason_counts": {
+    "silero_end": 69
+  },
+  "commit_reason_percentages": {
+    "silero_end": 100.0
+  },
+  "early_final_latency_seconds": {
+    "min": 3.610489916987717,
+    "median": 4.4677051669568755,
+    "p95": 6.238170300028286,
+    "max": 6.99882337503368
+  },
+  "late_final_latency_seconds": {
+    "min": 3.610489916987717,
+    "median": 4.4677051669568755,
+    "p95": 6.238170300028286,
+    "max": 6.99882337503368
+  },
+  "status_events": [
+    {
+      "elapsed_seconds": 0.7128210829687305,
+      "payload": {
+        "type": "status",
+        "state": "ready",
+        "message": "Model worker ready"
+      }
+    }
+  ],
+  "events": [],
+  "decode_metrics": {
+    "decode_count": 206,
+    "commit_count": 69,
+    "by_priority": {
+      "partial": {
+        "wall_seconds": {
+          "count": 137,
+          "total": 167.179,
+          "mean": 1.22,
+          "median": 1.238,
+          "max": 2.757
+        },
+        "inference_seconds": {
+          "count": 137,
+          "total": 94.799,
+          "mean": 0.692,
+          "median": 0.58,
+          "max": 2.016
+        },
+        "audio_seconds": {
+          "count": 137,
+          "total": 197.66,
+          "mean": 1.443,
+          "median": 0.56,
+          "max": 2.38
+        },
+        "generated_tokens": 594,
+        "attempts": 74,
+        "truncated": 0,
+        "cancelled": 63,
+        "measured_inference": 122,
+        "outcomes": {
+          "cancelled": 63,
+          "partial": 72,
+          "stale_after_commit": 2
+        },
+        "inference_share_percent": 48.9
+      },
+      "final": {
+        "wall_seconds": {
+          "count": 69,
+          "total": 110.103,
+          "mean": 1.596,
+          "median": 1.421,
+          "max": 3.712
+        },
+        "inference_seconds": {
+          "count": 69,
+          "total": 98.956,
+          "mean": 1.434,
+          "median": 1.362,
+          "max": 3.678
+        },
+        "audio_seconds": {
+          "count": 69,
+          "total": 216.36,
+          "mean": 3.136,
+          "median": 3.0,
+          "max": 4.0
+        },
+        "generated_tokens": 1719,
+        "attempts": 69,
+        "truncated": 0,
+        "cancelled": 0,
+        "measured_inference": 69,
+        "outcomes": {
+          "final": 69
+        },
+        "inference_share_percent": 51.1
+      }
+    },
+    "final_redundancy": {
+      "commits": 69,
+      "matched_complete_partial": 0,
+      "matched_percent": 0.0,
+      "redundant_final_inference_seconds": 0,
+      "redundant_finals": 0
+    },
+    "partials_per_utterance": {
+      "submitted": {
+        "count": 69,
+        "total": 137.0,
+        "mean": 1.986,
+        "median": 2.0,
+        "max": 2.0
+      },
+      "completed": {
+        "count": 69,
+        "total": 72.0,
+        "mean": 1.043,
+        "median": 1.0,
+        "max": 2.0
+      }
+    },
+    "commit_reasons": {
+      "silero_end": 69
+    },
+    "session_id": "338a5de3-2552-4987-9dc2-cf29a5051bf2"
+  },
+  "csv_path": "../docs/evidence/soak_2026-09-29T00-57-43-0400.csv",
+  "backend_log_path": "../docs/evidence/soak_2026-09-29T00-57-43-0400.backend.log",
+  "decode_metrics_dir": "../docs/evidence/soak_2026-09-29T00-57-43-0400.decode-metrics",
+  "failures": []
+}

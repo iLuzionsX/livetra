@@ -73,3 +73,16 @@ swift test --package-path macos/LiveTR3Mac
 See `docs/GEMMA_ONLY_VALIDATION.md` for this change's evidence and limits.
 `docs/NATIVE_VALIDATION.md` and its replay files describe the historical pipeline;
 their timings do not characterize the current combined Gemma path.
+`docs/DECODE_COST.md` records where inference time actually goes, including one
+measured optimization that was tried and reverted.
+
+## Decode accounting
+
+Transcript messages cannot show where inference time goes, and they cannot show
+how often a final decode repeats a preview that already decoded the same speech.
+Set `CAPTION_METRICS_DIR` to a directory and each session writes
+`decode-metrics-<session>.json` (rollup) and `decode-metrics-<session>.records.json`
+(per decode) when it tears down. `scripts/soak.py` sets this itself and folds the
+rollup into its summary, so a soak reports the preview-versus-final compute split,
+the token count behind each decode, and the share of finals that a completed
+preview had already covered.

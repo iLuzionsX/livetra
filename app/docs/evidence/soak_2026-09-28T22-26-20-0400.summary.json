@@ -1,0 +1,166 @@
+{
+  "duration_seconds": 240.0,
+  "final_count": 73,
+  "error_count": 0,
+  "rss_bytes": {
+    "min": 4250664960.0,
+    "median": 4256350208.0,
+    "p95": 4265784115.2,
+    "max": 4265803776.0
+  },
+  "temp_file_count": {
+    "min": 0.0,
+    "median": 0.0,
+    "p95": 0.0,
+    "max": 0.0
+  },
+  "archive_entry_count": {
+    "min": 290.0,
+    "median": 290.0,
+    "p95": 290.0,
+    "max": 290.0
+  },
+  "final_latency_seconds": {
+    "min": 3.5300281660165638,
+    "median": 4.048209416971076,
+    "p95": 4.276355933200102,
+    "max": 4.360834125021938
+  },
+  "silence_to_final_seconds": {
+    "min": 1.4610390663146973,
+    "median": 1.7556042671203613,
+    "p95": 1.902512502670288,
+    "max": 1.960026741027832
+  },
+  "commit_reason_counts": {
+    "silero_end": 73
+  },
+  "commit_reason_percentages": {
+    "silero_end": 100.0
+  },
+  "early_final_latency_seconds": {
+    "min": 3.5300281660165638,
+    "median": 4.048209416971076,
+    "p95": 4.276355933200102,
+    "max": 4.360834125021938
+  },
+  "late_final_latency_seconds": {
+    "min": 3.5300281660165638,
+    "median": 4.048209416971076,
+    "p95": 4.276355933200102,
+    "max": 4.360834125021938
+  },
+  "status_events": [
+    {
+      "elapsed_seconds": 0.7143670829827897,
+      "payload": {
+        "type": "status",
+        "state": "ready",
+        "message": "Model worker ready"
+      }
+    }
+  ],
+  "events": [],
+  "decode_metrics": {
+    "decode_count": 219,
+    "commit_count": 73,
+    "by_priority": {
+      "partial": {
+        "wall_seconds": {
+          "count": 146,
+          "total": 118.835,
+          "mean": 0.814,
+          "median": 0.778,
+          "max": 1.224
+        },
+        "inference_seconds": {
+          "count": 146,
+          "total": 70.972,
+          "mean": 0.486,
+          "median": 0.53,
+          "max": 0.701
+        },
+        "audio_seconds": {
+          "count": 146,
+          "total": 213.32,
+          "mean": 1.461,
+          "median": 1.31,
+          "max": 2.4
+        },
+        "generated_tokens": 477,
+        "attempts": 73,
+        "truncated": 0,
+        "cancelled": 73,
+        "measured_inference": 141,
+        "outcomes": {
+          "cancelled": 73,
+          "partial": 73
+        },
+        "inference_share_percent": 45.6
+      },
+      "final": {
+        "wall_seconds": {
+          "count": 73,
+          "total": 101.117,
+          "mean": 1.385,
+          "median": 1.419,
+          "max": 1.623
+        },
+        "inference_seconds": {
+          "count": 73,
+          "total": 84.658,
+          "mean": 1.16,
+          "median": 1.153,
+          "max": 1.239
+        },
+        "audio_seconds": {
+          "count": 73,
+          "total": 196.8,
+          "mean": 2.696,
+          "median": 2.76,
+          "max": 2.8
+        },
+        "generated_tokens": 1608,
+        "attempts": 73,
+        "truncated": 0,
+        "cancelled": 0,
+        "measured_inference": 73,
+        "outcomes": {
+          "final": 73
+        },
+        "inference_share_percent": 54.4
+      }
+    },
+    "final_redundancy": {
+      "commits": 73,
+      "matched_complete_partial": 0,
+      "matched_percent": 0.0,
+      "redundant_final_inference_seconds": 0,
+      "redundant_finals": 0
+    },
+    "partials_per_utterance": {
+      "submitted": {
+        "count": 73,
+        "total": 146.0,
+        "mean": 2.0,
+        "median": 2.0,
+        "max": 2.0
+      },
+      "completed": {
+        "count": 73,
+        "total": 73.0,
+        "mean": 1.0,
+        "median": 1.0,
+        "max": 1.0
+      }
+    },
+    "commit_reasons": {
+      "silero_end": 73
+    },
+    "session_id": "8119b70e-7f06-4008-a1a0-aa585879ed89"
+  },
+  "csv_path": "../docs/evidence/soak_2026-09-28T22-26-20-0400.csv",
+  "backend_log_path": "../docs/evidence/soak_2026-09-28T22-26-20-0400.backend.log",
+  "decode_metrics_dir": "../docs/evidence/soak_2026-09-28T22-26-20-0400.decode-metrics",
+  "failures": []
+}

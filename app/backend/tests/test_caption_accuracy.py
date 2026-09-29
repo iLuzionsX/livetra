@@ -1,13 +1,14 @@
 from types import SimpleNamespace
 
 from protocol import ConfigMessage
-from session import TranscriptionSession, UtteranceRuntime
+from session import DecodeLedger, TranscriptionSession, UtteranceRuntime
 
 
 def session(source="English", code_switching=False):
     value = object.__new__(TranscriptionSession)
     value.state = SimpleNamespace(config=ConfigMessage(
         source_lang=source, code_switching_enabled=code_switching))
+    value._decode_ledger = DecodeLedger()
     return value
 
 

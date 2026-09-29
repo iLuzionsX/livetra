@@ -7,7 +7,7 @@ import numpy as np
 import pytest
 
 from mlx_worker import (
-    ASTResult,
+    DecodeStats,
     AST_MAX_AUDIO_SECONDS,
     MLXWorker,
     MLXWorkerService,
@@ -101,9 +101,20 @@ def test_ast_streams_source_then_translation_and_returns_complete_result(
         on_progress=progress.append,
     )
 
-    assert result == ASTResult("We cannot go", "No podemos ir", True, False)
+    assert (result.original, result.translation, result.complete, result.truncated) == (
+        "We cannot go",
+        "No podemos ir",
+        True,
+        False,
+    )
     assert budgets == [192]
     assert progress == ["We cannot go", "We cannot go\nSpanish: No podemos ir"]
+    assert result.stats is not None
+    assert result.stats.attempts == 1
+    assert result.stats.generated_tokens == 9
+    assert result.stats.audio_seconds == 1.0
+    assert result.stats.max_tokens == 192
+    assert result.stats.truncated is False
 
 
 def test_truncated_final_retries_once_with_bounded_budget(monkeypatch, tmp_path):
@@ -131,8 +142,18 @@ def test_truncated_final_retries_once_with_bounded_budget(monkeypatch, tmp_path)
         priority="final",
     )
 
-    assert result == ASTResult("We cannot go", "No podemos ir", True, False)
+    assert (result.original, result.translation, result.complete, result.truncated) == (
+        "We cannot go",
+        "No podemos ir",
+        True,
+        False,
+    )
     assert budgets == [100, 200]
+    # The retry produced the returned text, so the decode is not truncated.
+    assert result.stats is not None
+    assert result.stats.attempts == 2
+    assert result.stats.truncated is False
+    assert result.stats.complete is True
 
 
 def test_partial_ast_cancellation_closes_stream_and_returns_no_result(monkeypatch, tmp_path):

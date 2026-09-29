@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import hashlib
 import json
 import logging
 import os
@@ -10,12 +11,13 @@ from collections import deque
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Literal
+from typing import Callable, Literal
 from uuid import uuid4
 
 import numpy as np
 from mlx_worker import (
     ASTResult,
+    DecodeStats,
     InferenceTimeoutError,
     MLXWorkerService,
     WorkerStatusEvent,
@@ -45,6 +47,10 @@ ARCHIVE_AUTOSAVE_SECONDS = max(5, int(os.getenv("SESSION_AUTOSAVE_SECONDS", "60"
 ARCHIVE_ROOT = (
     Path.home() / "Library" / "Application Support" / "LiveTR3" / "sessions"
 )
+# Set to a directory to persist per-session decode accounting. Off by default so a
+# live service writes nothing extra.
+CAPTION_METRICS_DIR = os.getenv("CAPTION_METRICS_DIR", "")
+CAPTION_METRICS_MAX_RECORDS = 20_000
 LEARNING_PROFILE_PATH = (
     Path.home() / "Library" / "Application Support" / "LiveTR3" / "learning_profile.json"
 )
@@ -126,6 +132,178 @@ class UtteranceRuntime:
     voiced_audio_samples: int = 0
     latest_partial_original: str = ""
     latest_partial_translation: str = ""
+    partials_submitted: int = 0
+    partials_completed: int = 0
+    last_complete_partial_voiced: tuple[int, str] | None = None
+
+
+def _seconds_block(values: list[float]) -> dict:
+    if not values:
+        return {"count": 0, "total": 0.0, "mean": 0.0, "median": 0.0, "max": 0.0}
+    ordered = sorted(values)
+    middle = len(ordered) // 2
+    median = (
+        ordered[middle]
+        if len(ordered) % 2
+        else (ordered[middle - 1] + ordered[middle]) / 2
+    )
+    return {
+        "count": len(ordered),
+        "total": round(sum(ordered), 3),
+        "mean": round(sum(ordered) / len(ordered), 3),
+        "median": round(median, 3),
+        "max": round(ordered[-1], 3),
+    }
+
+
+@dataclass(slots=True)
+class DecodeLedger:
+    """Every AST decode and commit in one session, measured.
+
+    Transcript messages cannot show where inference time goes, and they cannot
+    show how often a final decode repeats a preview that already decoded the
+    same audio. Both questions decide whether the final pass is worth keeping.
+    """
+
+    decodes: list[dict] = field(default_factory=list)
+    commits: list[dict] = field(default_factory=list)
+
+    def record_decode(
+        self,
+        *,
+        priority: str,
+        utterance_id: int | None,
+        audio_seconds: float,
+        wall_seconds: float,
+        stats: DecodeStats | None,
+        outcome: str,
+    ) -> None:
+        if len(self.decodes) >= CAPTION_METRICS_MAX_RECORDS:
+            return
+        self.decodes.append(
+            {
+                "priority": priority,
+                "utterance_id": utterance_id,
+                "audio_seconds": round(audio_seconds, 3),
+                # Wall time covers queue wait, so it bounds GPU time rather than
+                # measuring it. Use the worker's own timing whenever it survived.
+                "wall_seconds": round(wall_seconds, 3),
+                "inference_seconds": round(
+                    stats.inference_seconds if stats is not None else wall_seconds,
+                    3,
+                ),
+                "measured_inference": stats is not None,
+                "attempts": stats.attempts if stats is not None else 0,
+                "generated_tokens": stats.generated_tokens if stats is not None else 0,
+                "max_tokens": stats.max_tokens if stats is not None else 0,
+                "truncated": bool(stats.truncated) if stats is not None else False,
+                "cancelled": bool(stats.cancelled) if stats is not None else outcome == "cancelled",
+                "outcome": outcome,
+            }
+        )
+
+    def record_commit(
+        self,
+        *,
+        utterance_id: int,
+        reason: CommitReason,
+        audio_seconds: float,
+        voiced_seconds: float,
+        matched_complete_partial: bool,
+        partials_submitted: int,
+        partials_completed: int,
+    ) -> None:
+        if len(self.commits) >= CAPTION_METRICS_MAX_RECORDS:
+            return
+        self.commits.append(
+            {
+                "utterance_id": utterance_id,
+                "reason": reason,
+                "audio_seconds": round(audio_seconds, 3),
+                "voiced_seconds": round(voiced_seconds, 3),
+                # True when a completed preview already decoded exactly this voiced
+                # content, which makes the final pass a repeat.
+                "matched_complete_partial": matched_complete_partial,
+                "partials_submitted": partials_submitted,
+                "partials_completed": partials_completed,
+            }
+        )
+
+    def summary(self) -> dict:
+        by_priority: dict[str, dict] = {}
+        for priority in ("partial", "final"):
+            rows = [row for row in self.decodes if row["priority"] == priority]
+            by_priority[priority] = {
+                "wall_seconds": _seconds_block([row["wall_seconds"] for row in rows]),
+                "inference_seconds": _seconds_block(
+                    [row["inference_seconds"] for row in rows]
+                ),
+                "audio_seconds": _seconds_block([row["audio_seconds"] for row in rows]),
+                "generated_tokens": sum(row["generated_tokens"] for row in rows),
+                "attempts": sum(row["attempts"] for row in rows),
+                "truncated": sum(1 for row in rows if row["truncated"]),
+                "cancelled": sum(1 for row in rows if row["cancelled"]),
+                "measured_inference": sum(1 for row in rows if row["measured_inference"]),
+                "outcomes": {
+                    outcome: sum(1 for row in rows if row["outcome"] == outcome)
+                    for outcome in sorted({row["outcome"] for row in rows})
+                },
+            }
+
+        total_inference = sum(
+            by_priority[priority]["inference_seconds"]["total"]
+            for priority in by_priority
+        )
+        for priority, block in by_priority.items():
+            block["inference_share_percent"] = (
+                round(block["inference_seconds"]["total"] / total_inference * 100, 1)
+                if total_inference
+                else 0.0
+            )
+
+        matched = [
+            commit for commit in self.commits if commit["matched_complete_partial"]
+        ]
+        matched_finals = [
+            row
+            for commit in matched
+            for row in self.decodes
+            if row["priority"] == "final" and row["utterance_id"] == commit["utterance_id"]
+        ]
+        # The final currently decodes untrimmed commit audio, so this is what reuse
+        # could save once the final sends the same trimmed clip a preview sends.
+        redundant_seconds = sum(row["inference_seconds"] for row in matched_finals)
+        partial_totals = [
+            commit["partials_submitted"] for commit in self.commits
+        ]
+        completed_totals = [
+            commit["partials_completed"] for commit in self.commits
+        ]
+
+        return {
+            "decode_count": len(self.decodes),
+            "commit_count": len(self.commits),
+            "by_priority": by_priority,
+            "final_redundancy": {
+                "commits": len(self.commits),
+                "matched_complete_partial": len(matched),
+                "matched_percent": (
+                    round(len(matched) / len(self.commits) * 100, 1)
+                    if self.commits
+                    else 0.0
+                ),
+                "redundant_final_inference_seconds": round(redundant_seconds, 3),
+                "redundant_finals": len(matched_finals),
+            },
+            "partials_per_utterance": {
+                "submitted": _seconds_block([float(v) for v in partial_totals]),
+                "completed": _seconds_block([float(v) for v in completed_totals]),
+            },
+            "commit_reasons": {
+                reason: sum(1 for commit in self.commits if commit["reason"] == reason)
+                for reason in sorted({commit["reason"] for commit in self.commits})
+            },
+        }
 
 
 def _source_text_ends_sentence(text: str) -> bool:
@@ -203,24 +381,55 @@ def _audio_has_transcribable_energy(audio: np.ndarray) -> bool:
     return rms >= MIN_TRANSCRIBABLE_RMS or voiced_frames >= required_frames * 2
 
 
+def _voiced_span(audio: np.ndarray) -> tuple[int, int] | None:
+    """First and last frame that clear the transcribable-energy threshold."""
+    frame_count = audio.size // FRAME_SAMPLES
+    if frame_count <= 0:
+        return None
+    framed = audio[: frame_count * FRAME_SAMPLES].reshape(frame_count, FRAME_SAMPLES)
+    frame_rms = np.sqrt(np.mean(np.square(framed), axis=1))
+    voiced_indices = np.flatnonzero(frame_rms >= MIN_TRANSCRIBABLE_FRAME_RMS)
+    if voiced_indices.size == 0:
+        return None
+    return int(voiced_indices[0]), int(voiced_indices[-1])
+
+
 def _trim_to_transcribable_audio(audio: np.ndarray) -> np.ndarray:
     audio = np.asarray(audio, dtype=np.float32).reshape(-1)
     frame_count = audio.size // FRAME_SAMPLES
     if frame_count <= 0:
         return np.zeros(0, dtype=np.float32)
 
-    framed = audio[: frame_count * FRAME_SAMPLES].reshape(frame_count, FRAME_SAMPLES)
-    frame_rms = np.sqrt(np.mean(np.square(framed), axis=1))
-    voiced_indices = np.flatnonzero(frame_rms >= MIN_TRANSCRIBABLE_FRAME_RMS)
-    if voiced_indices.size == 0:
+    span = _voiced_span(audio)
+    if span is None:
         return audio
 
     pad_frames = max(1, int(np.ceil(TRANSCRIBABLE_TRIM_PAD_SECONDS / 0.02)))
-    start_frame = max(0, int(voiced_indices[0]) - pad_frames)
-    end_frame = min(frame_count, int(voiced_indices[-1]) + pad_frames + 1)
+    start_frame = max(0, span[0] - pad_frames)
+    end_frame = min(frame_count, span[1] + pad_frames + 1)
     return audio[start_frame * FRAME_SAMPLES : end_frame * FRAME_SAMPLES].astype(
         np.float32,
         copy=False,
+    )
+
+
+def _voiced_signature(audio: np.ndarray) -> tuple[int, str] | None:
+    """Identity of what was *said*, ignoring silence around it.
+
+    Trailing silence changes the length of a clip but not its content, and
+    decoding it again cannot change the caption. Comparing the voiced span
+    rather than the padded slice is what makes a commit that only added silence
+    recognisable as a repeat of an earlier preview.
+    """
+    span = _voiced_span(audio)
+    if span is None:
+        return None
+    start_frame, end_frame = span
+    contiguous = np.ascontiguousarray(audio, dtype=np.float32)
+    voiced = contiguous[start_frame * FRAME_SAMPLES : (end_frame + 1) * FRAME_SAMPLES]
+    return (
+        int(voiced.size),
+        hashlib.blake2b(voiced.tobytes(), digest_size=12).hexdigest(),
     )
 
 
@@ -357,6 +566,7 @@ class TranscriptionSession:
         self._archive_events: list[dict] = []
         self._archive_utterances: dict[int, dict] = {}
         self._archive_autosave_task: asyncio.Task | None = None
+        self._decode_ledger = DecodeLedger()
 
     async def run(self) -> None:
         await self.websocket.accept()
@@ -374,6 +584,7 @@ class TranscriptionSession:
             self.worker.remove_status_listener(self._handle_worker_status)
             await self.hub.detach(self.session_id, self)
             await self._finalize_archive()
+            await self._write_decode_metrics()
             for task in self._jobs:
                 task.cancel()
             await asyncio.gather(*self._jobs, return_exceptions=True)
@@ -589,6 +800,23 @@ class TranscriptionSession:
                 utterance_id,
                 audio.shape[0] / 16_000,
             )
+            runtime = self._utterance_runtime.get(utterance_id)
+            commit_voiced = _voiced_signature(transcribable_audio)
+            self._decode_ledger.record_commit(
+                utterance_id=utterance_id,
+                reason=reason,
+                audio_seconds=transcribable_audio.size / 16_000,
+                voiced_seconds=(commit_voiced[0] / 16_000) if commit_voiced else 0.0,
+                # True when a completed preview already decoded exactly this voiced
+                # content, so the final pass cannot change the caption.
+                matched_complete_partial=(
+                    runtime is not None
+                    and runtime.last_complete_partial_voiced is not None
+                    and runtime.last_complete_partial_voiced == commit_voiced
+                ),
+                partials_submitted=runtime.partials_submitted if runtime else 0,
+                partials_completed=runtime.partials_completed if runtime else 0,
+            )
             self._schedule_ast("final", utterance_id, audio)
             return True
 
@@ -605,6 +833,9 @@ class TranscriptionSession:
         ):
             return
         if priority == "partial":
+            runtime = self._utterance_runtime.get(utterance_id)
+            if runtime is not None:
+                runtime.partials_submitted += 1
             scheduled = self._run_scheduled_partial_ast(
                 priority, utterance_id, audio.copy()
             )
@@ -653,6 +884,37 @@ class TranscriptionSession:
                 )
 
     async def _run_mlx_ast(self, priority: str, utterance_id: int, audio: np.ndarray) -> None:
+        # Own accounting for exactly one decode, including the early returns where
+        # a commit cancels this preview, so cancelled GPU work is not invisible.
+        record: dict = {"outcome": "unknown", "stats": None}
+
+        def capture_stats(stats: DecodeStats) -> None:
+            # Replaces the fallback so a cancelled preview reports its real cost.
+            record["stats"] = stats
+
+        started_at = time.monotonic()
+        try:
+            await self._run_mlx_ast_body(
+                priority, utterance_id, audio, record, capture_stats
+            )
+        finally:
+            self._decode_ledger.record_decode(
+                priority=priority,
+                utterance_id=utterance_id,
+                audio_seconds=audio.size / 16_000,
+                wall_seconds=max(0.0, time.monotonic() - started_at),
+                stats=record["stats"],
+                outcome=record["outcome"],
+            )
+
+    async def _run_mlx_ast_body(
+        self,
+        priority: str,
+        utterance_id: int,
+        audio: np.ndarray,
+        record: dict,
+        on_stats: Callable[[DecodeStats], None],
+    ) -> None:
         async def publish_progress(text: str) -> None:
             if utterance_id in self._finalized:
                 return
@@ -702,25 +964,32 @@ class TranscriptionSession:
                 code_switching_enabled=self.state.config.code_switching_enabled,
                 max_tokens=self._max_tokens_for_ast(priority, audio),
                 on_progress=publish_progress,
+                on_stats=on_stats,
             )
         except asyncio.CancelledError:
+            record["outcome"] = "cancelled"
             raise
         except InferenceTimeoutError as exc:
+            record["outcome"] = "timeout"
             if priority == "partial":
                 logger.info("partial_inference dropped after timeout: %s", exc)
                 return
             await self._send_error(f"Inference failed: {exc}")
             return
         except Exception as exc:
+            record["outcome"] = "error"
             await self._send_error(f"Inference failed: {exc}")
             return
 
         if result is None:
+            record["outcome"] = "cancelled" if priority == "partial" else "no_result"
             return
         if not isinstance(result, ASTResult):
+            record["outcome"] = "invalid"
             await self._send_error("Inference failed: model returned an invalid AST result")
             return
         if not result.complete:
+            record["outcome"] = "incomplete"
             if priority == "final":
                 await self._send_error(
                     "Final inference remained incomplete after one retry; no final caption was published"
@@ -730,11 +999,16 @@ class TranscriptionSession:
 
         if priority == "partial":
             if utterance_id in self._finalized or utterance_id in self._finalizing:
+                record["outcome"] = "stale_after_commit"
                 return
             runtime = self._utterance_runtime.setdefault(
                 utterance_id,
                 UtteranceRuntime(partials=deque(maxlen=self._stability_window())),
             )
+            # A completed decode over this voiced content is a reusable final input.
+            runtime.partials_completed += 1
+            runtime.last_complete_partial_voiced = _voiced_signature(audio)
+            record["outcome"] = "partial"
             merged_original = original.strip()
             merged_translation = (
                 translation.strip() if self._should_translate_final(merged_original) else merged_original
@@ -758,6 +1032,7 @@ class TranscriptionSession:
             return
 
         self._finalized.add(utterance_id)
+        record["outcome"] = "final"
         commit_reason = self._finalizing.pop(utterance_id, "silero_end")
         runtime = self._utterance_runtime.pop(utterance_id, None)
         self.state.prior_context.append((original, translation))
@@ -1226,6 +1501,36 @@ class TranscriptionSession:
             self._archive_autosave_task = None
         await self._write_archive_snapshot()
         self._archive_dir = None
+
+    async def _write_decode_metrics(self) -> None:
+        summary = self._decode_ledger.summary()
+        if not summary["decode_count"]:
+            return
+        summary["session_id"] = self.session_id
+        logger.info("decode_metrics %s", json.dumps(summary))
+        if not CAPTION_METRICS_DIR:
+            return
+        await asyncio.to_thread(self._write_decode_metrics_files, dict(summary))
+
+    def _write_decode_metrics_files(self, summary: dict) -> None:
+        metrics_dir = Path(CAPTION_METRICS_DIR)
+        metrics_dir.mkdir(parents=True, exist_ok=True)
+        name = "".join(
+            char if char.isalnum() or char in "-_" else "_" for char in self.session_id
+        )
+        (metrics_dir / f"decode-metrics-{name}.json").write_text(
+            json.dumps(summary, indent=2), encoding="utf-8"
+        )
+        (metrics_dir / f"decode-metrics-{name}.records.json").write_text(
+            json.dumps(
+                {
+                    "decodes": self._decode_ledger.decodes,
+                    "commits": self._decode_ledger.commits,
+                },
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
 
     def _write_archive_files(
         self,

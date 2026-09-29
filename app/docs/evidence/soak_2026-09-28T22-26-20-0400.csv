@@ -1,0 +1,10 @@
+elapsed_seconds,rss_bytes,temp_file_count,archive_entry_count,latest_final_latency_seconds,latest_silence_to_final_seconds,latest_commit_reason,new_finals,final_count,error_count,worker_state
+30.717,4250664960,0,290,3.947,1.531,silero_end,1:silero_end:1.725;2:silero_end:1.607;3:silero_end:1.765;4:silero_end:1.543;5:silero_end:1.820;6:silero_end:1.697;7:silero_end:1.756;8:silero_end:1.531,8,0,ready
+60.738,4254384128,0,290,4.361,1.96,silero_end,9:silero_end:1.856;10:silero_end:1.710;11:silero_end:1.818;12:silero_end:1.557;13:silero_end:1.863;14:silero_end:1.738;15:silero_end:1.870;16:silero_end:1.639;17:silero_end:1.960,17,0,ready
+90.763,4254564352,0,290,3.917,1.845,silero_end,18:silero_end:1.835;19:silero_end:1.541;20:silero_end:1.548;21:silero_end:1.875;22:silero_end:1.761;23:silero_end:1.775;24:silero_end:1.530;25:silero_end:1.831;26:silero_end:1.722;27:silero_end:1.845,27,0,ready
+120.783,4254941184,0,290,4.02,1.608,silero_end,28:silero_end:1.574;29:silero_end:1.907;30:silero_end:1.797;31:silero_end:1.498;32:silero_end:1.529;33:silero_end:1.852;34:silero_end:1.709;35:silero_end:1.848;36:silero_end:1.608,36,0,ready
+150.806,4256350208,0,290,4.183,1.815,silero_end,37:silero_end:1.907;38:silero_end:1.794;39:silero_end:1.818;40:silero_end:1.563;41:silero_end:1.871;42:silero_end:1.759;43:silero_end:1.461;44:silero_end:1.516;45:silero_end:1.815,45,0,ready
+180.831,4263346176,0,290,4.144,1.737,silero_end,46:silero_end:1.721;47:silero_end:1.856;48:silero_end:1.620;49:silero_end:1.932;50:silero_end:1.820;51:silero_end:1.534;52:silero_end:1.530;53:silero_end:1.851;54:silero_end:1.737,54,0,ready
+210.852,4263559168,0,290,3.91,1.843,silero_end,55:silero_end:1.779;56:silero_end:1.536;57:silero_end:1.839;58:silero_end:1.747;59:silero_end:1.466;60:silero_end:1.522;61:silero_end:1.827;62:silero_end:1.702;63:silero_end:1.843,63,0,ready
+240.872,4265803776,0,290,3.93,1.528,silero_end,64:silero_end:1.618;65:silero_end:1.900;66:silero_end:1.776;67:silero_end:1.496;68:silero_end:1.562;69:silero_end:1.863;70:silero_end:1.745;71:silero_end:1.780;72:silero_end:1.528,72,0,ready
+270.9,4265754624,0,290,4.207,1.844,silero_end,73:silero_end:1.844,73,0,ready

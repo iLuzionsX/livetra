@@ -1,0 +1,99 @@
+{
+  "decode_count": 187,
+  "commit_count": 68,
+  "by_priority": {
+    "partial": {
+      "wall_seconds": {
+        "count": 119,
+        "total": 191.157,
+        "mean": 1.606,
+        "median": 1.439,
+        "max": 3.81
+      },
+      "inference_seconds": {
+        "count": 119,
+        "total": 98.328,
+        "mean": 0.826,
+        "median": 0.607,
+        "max": 3.52
+      },
+      "audio_seconds": {
+        "count": 119,
+        "total": 162.46,
+        "mean": 1.365,
+        "median": 0.56,
+        "max": 3.3
+      },
+      "generated_tokens": 394,
+      "attempts": 55,
+      "truncated": 0,
+      "cancelled": 64,
+      "measured_inference": 96,
+      "outcomes": {
+        "cancelled": 64,
+        "partial": 54,
+        "stale_after_commit": 1
+      },
+      "inference_share_percent": 44.2
+    },
+    "final": {
+      "wall_seconds": {
+        "count": 68,
+        "total": 145.408,
+        "mean": 2.138,
+        "median": 1.855,
+        "max": 4.666
+      },
+      "inference_seconds": {
+        "count": 68,
+        "total": 124.346,
+        "mean": 1.829,
+        "median": 1.52,
+        "max": 3.995
+      },
+      "audio_seconds": {
+        "count": 68,
+        "total": 213.36,
+        "mean": 3.138,
+        "median": 3.0,
+        "max": 4.0
+      },
+      "generated_tokens": 1696,
+      "attempts": 68,
+      "truncated": 0,
+      "cancelled": 0,
+      "measured_inference": 68,
+      "outcomes": {
+        "final": 68
+      },
+      "inference_share_percent": 55.8
+    }
+  },
+  "final_redundancy": {
+    "commits": 68,
+    "matched_complete_partial": 0,
+    "matched_percent": 0.0,
+    "redundant_final_inference_seconds": 0,
+    "redundant_finals": 0
+  },
+  "partials_per_utterance": {
+    "submitted": {
+      "count": 68,
+      "total": 119.0,
+      "mean": 1.75,
+      "median": 2.0,
+      "max": 2.0
+    },
+    "completed": {
+      "count": 68,
+      "total": 54.0,
+      "mean": 0.794,
+      "median": 1.0,
+      "max": 2.0
+    }
+  },
+  "commit_reasons": {
+    "silero_end": 68
+  },
+  "session_id": "ada04a17-f392-40b0-ab3e-a0bbc167a304"
+}

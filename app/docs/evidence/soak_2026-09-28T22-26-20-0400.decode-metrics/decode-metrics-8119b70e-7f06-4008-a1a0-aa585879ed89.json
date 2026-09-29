@@ -1,0 +1,98 @@
+{
+  "decode_count": 219,
+  "commit_count": 73,
+  "by_priority": {
+    "partial": {
+      "wall_seconds": {
+        "count": 146,
+        "total": 118.835,
+        "mean": 0.814,
+        "median": 0.778,
+        "max": 1.224
+      },
+      "inference_seconds": {
+        "count": 146,
+        "total": 70.972,
+        "mean": 0.486,
+        "median": 0.53,
+        "max": 0.701
+      },
+      "audio_seconds": {
+        "count": 146,
+        "total": 213.32,
+        "mean": 1.461,
+        "median": 1.31,
+        "max": 2.4
+      },
+      "generated_tokens": 477,
+      "attempts": 73,
+      "truncated": 0,
+      "cancelled": 73,
+      "measured_inference": 141,
+      "outcomes": {
+        "cancelled": 73,
+        "partial": 73
+      },
+      "inference_share_percent": 45.6
+    },
+    "final": {
+      "wall_seconds": {
+        "count": 73,
+        "total": 101.117,
+        "mean": 1.385,
+        "median": 1.419,
+        "max": 1.623
+      },
+      "inference_seconds": {
+        "count": 73,
+        "total": 84.658,
+        "mean": 1.16,
+        "median": 1.153,
+        "max": 1.239
+      },
+      "audio_seconds": {
+        "count": 73,
+        "total": 196.8,
+        "mean": 2.696,
+        "median": 2.76,
+        "max": 2.8
+      },
+      "generated_tokens": 1608,
+      "attempts": 73,
+      "truncated": 0,
+      "cancelled": 0,
+      "measured_inference": 73,
+      "outcomes": {
+        "final": 73
+      },
+      "inference_share_percent": 54.4
+    }
+  },
+  "final_redundancy": {
+    "commits": 73,
+    "matched_complete_partial": 0,
+    "matched_percent": 0.0,
+    "redundant_final_inference_seconds": 0,
+    "redundant_finals": 0
+  },
+  "partials_per_utterance": {
+    "submitted": {
+      "count": 73,
+      "total": 146.0,
+      "mean": 2.0,
+      "median": 2.0,
+      "max": 2.0
+    },
+    "completed": {
+      "count": 73,
+      "total": 73.0,
+      "mean": 1.0,
+      "median": 1.0,
+      "max": 1.0
+    }
+  },
+  "commit_reasons": {
+    "silero_end": 73
+  },
+  "session_id": "8119b70e-7f06-4008-a1a0-aa585879ed89"
+}

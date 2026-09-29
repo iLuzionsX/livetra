@@ -1,0 +1,167 @@
+{
+  "duration_seconds": 240.0,
+  "final_count": 68,
+  "error_count": 0,
+  "rss_bytes": {
+    "min": 5569331200.0,
+    "median": 5571969024.0,
+    "p95": 5582251622.4,
+    "max": 5584683008.0
+  },
+  "temp_file_count": {
+    "min": 0.0,
+    "median": 0.0,
+    "p95": 0.0,
+    "max": 0.0
+  },
+  "archive_entry_count": {
+    "min": 292.0,
+    "median": 292.0,
+    "p95": 292.0,
+    "max": 292.0
+  },
+  "final_latency_seconds": {
+    "min": 3.6405983330332674,
+    "median": 5.233059521007817,
+    "p95": 7.116945798275992,
+    "max": 8.770840499957558
+  },
+  "silence_to_final_seconds": {
+    "min": 1.4821510314941406,
+    "median": 2.1772549152374268,
+    "p95": 4.08788583278656,
+    "max": 5.003091096878052
+  },
+  "commit_reason_counts": {
+    "silero_end": 68
+  },
+  "commit_reason_percentages": {
+    "silero_end": 100.0
+  },
+  "early_final_latency_seconds": {
+    "min": 3.6405983330332674,
+    "median": 5.233059521007817,
+    "p95": 7.116945798275992,
+    "max": 8.770840499957558
+  },
+  "late_final_latency_seconds": {
+    "min": 3.6405983330332674,
+    "median": 5.233059521007817,
+    "p95": 7.116945798275992,
+    "max": 8.770840499957558
+  },
+  "status_events": [
+    {
+      "elapsed_seconds": 0.6846346249803901,
+      "payload": {
+        "type": "status",
+        "state": "ready",
+        "message": "Model worker ready"
+      }
+    }
+  ],
+  "events": [],
+  "decode_metrics": {
+    "decode_count": 187,
+    "commit_count": 68,
+    "by_priority": {
+      "partial": {
+        "wall_seconds": {
+          "count": 119,
+          "total": 191.157,
+          "mean": 1.606,
+          "median": 1.439,
+          "max": 3.81
+        },
+        "inference_seconds": {
+          "count": 119,
+          "total": 98.328,
+          "mean": 0.826,
+          "median": 0.607,
+          "max": 3.52
+        },
+        "audio_seconds": {
+          "count": 119,
+          "total": 162.46,
+          "mean": 1.365,
+          "median": 0.56,
+          "max": 3.3
+        },
+        "generated_tokens": 394,
+        "attempts": 55,
+        "truncated": 0,
+        "cancelled": 64,
+        "measured_inference": 96,
+        "outcomes": {
+          "cancelled": 64,
+          "partial": 54,
+          "stale_after_commit": 1
+        },
+        "inference_share_percent": 44.2
+      },
+      "final": {
+        "wall_seconds": {
+          "count": 68,
+          "total": 145.408,
+          "mean": 2.138,
+          "median": 1.855,
+          "max": 4.666
+        },
+        "inference_seconds": {
+          "count": 68,
+          "total": 124.346,
+          "mean": 1.829,
+          "median": 1.52,
+          "max": 3.995
+        },
+        "audio_seconds": {
+          "count": 68,
+          "total": 213.36,
+          "mean": 3.138,
+          "median": 3.0,
+          "max": 4.0
+        },
+        "generated_tokens": 1696,
+        "attempts": 68,
+        "truncated": 0,
+        "cancelled": 0,
+        "measured_inference": 68,
+        "outcomes": {
+          "final": 68
+        },
+        "inference_share_percent": 55.8
+      }
+    },
+    "final_redundancy": {
+      "commits": 68,
+      "matched_complete_partial": 0,
+      "matched_percent": 0.0,
+      "redundant_final_inference_seconds": 0,
+      "redundant_finals": 0
+    },
+    "partials_per_utterance": {
+      "submitted": {
+        "count": 68,
+        "total": 119.0,
+        "mean": 1.75,
+        "median": 2.0,
+        "max": 2.0
+      },
+      "completed": {
+        "count": 68,
+        "total": 54.0,
+        "mean": 0.794,
+        "median": 1.0,
+        "max": 2.0
+      }
+    },
+    "commit_reasons": {
+      "silero_end": 68
+    },
+    "session_id": "ada04a17-f392-40b0-ab3e-a0bbc167a304"
+  },
+  "csv_path": "../docs/evidence/soak_2026-09-29T01-02-59-0400.csv",
+  "backend_log_path": "../docs/evidence/soak_2026-09-29T01-02-59-0400.backend.log",
+  "decode_metrics_dir": "../docs/evidence/soak_2026-09-29T01-02-59-0400.decode-metrics",
+  "failures": []
+}

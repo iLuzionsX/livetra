@@ -1,0 +1,525 @@
+INFO:     Started server process [6557]
+INFO:     Waiting for application startup.
+
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]
+Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 64198.53it/s]
+/Users/ed/Documents/GitHub/livetra/app/backend/.venv/lib/python3.14/site-packages/transformers/audio_utils.py:821: UserWarning: At least one mel filter has all zero values. The value for `num_mel_filters` (128) may be set too high. Or, the value for `num_frequency_bins` (257) may be set too low.
+  warnings.warn(
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8766 (Press CTRL+C to quit)
+INFO:     127.0.0.1:52427 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52428 - "WebSocket /" [accepted]
+INFO:     connection open
+INFO:     final_commit reason=silero_end utterance_id=1 audio_seconds=2.720
+WARNING:  slow_inference engine=gemma priority=final utterance_id=1 queue_seconds=0.043 inference_seconds=1.120
+WARNING:  slow_caption stage=asr priority=final utterance_id=1 elapsed_seconds=1.164 audio_seconds=2.720
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=2 queue_seconds=0.572 inference_seconds=0.521
+WARNING:  slow_caption stage=asr priority=partial utterance_id=2 elapsed_seconds=1.093 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=0.520 inference_seconds=0.502
+INFO:     final_commit reason=silero_end utterance_id=2 audio_seconds=2.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=2 queue_seconds=0.378 inference_seconds=1.024
+WARNING:  slow_caption stage=asr priority=final utterance_id=2 elapsed_seconds=1.402 audio_seconds=2.560
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=3 queue_seconds=0.779 inference_seconds=0.518
+WARNING:  slow_caption stage=asr priority=partial utterance_id=3 elapsed_seconds=1.298 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=0.518 inference_seconds=0.555
+INFO:     final_commit reason=silero_end utterance_id=3 audio_seconds=3.080
+WARNING:  slow_inference engine=gemma priority=final utterance_id=3 queue_seconds=0.039 inference_seconds=1.243
+WARNING:  slow_caption stage=asr priority=final utterance_id=3 elapsed_seconds=1.283 audio_seconds=3.080
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=4 queue_seconds=0.710 inference_seconds=0.573
+WARNING:  slow_caption stage=asr priority=partial utterance_id=4 elapsed_seconds=1.283 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=0.573 inference_seconds=0.575
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=4 queue_seconds=0.482 inference_seconds=0.907
+WARNING:  slow_caption stage=asr priority=partial utterance_id=4 elapsed_seconds=1.389 audio_seconds=2.380
+INFO:     final_commit reason=silero_end utterance_id=4 audio_seconds=3.980
+WARNING:  slow_inference engine=gemma priority=final utterance_id=4 queue_seconds=0.000 inference_seconds=1.372
+WARNING:  slow_caption stage=asr priority=final utterance_id=4 elapsed_seconds=1.373 audio_seconds=3.980
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=5 queue_seconds=0.728 inference_seconds=0.560
+WARNING:  slow_caption stage=asr priority=partial utterance_id=5 elapsed_seconds=1.289 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=0.560 inference_seconds=0.615
+INFO:     final_commit reason=silero_end utterance_id=5 audio_seconds=3.620
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=5 queue_seconds=0.571 inference_seconds=0.852
+WARNING:  slow_caption stage=asr priority=partial utterance_id=5 elapsed_seconds=1.423 audio_seconds=2.380
+WARNING:  slow_inference engine=gemma priority=final utterance_id=5 queue_seconds=0.041 inference_seconds=1.499
+WARNING:  slow_caption stage=asr priority=final utterance_id=5 elapsed_seconds=1.540 audio_seconds=3.620
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=6 queue_seconds=1.009 inference_seconds=0.519
+WARNING:  slow_caption stage=asr priority=partial utterance_id=6 elapsed_seconds=1.529 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=0.519 inference_seconds=0.617
+INFO:     final_commit reason=silero_end utterance_id=6 audio_seconds=3.280
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=6 queue_seconds=0.128 inference_seconds=0.919
+WARNING:  slow_caption stage=asr priority=partial utterance_id=6 elapsed_seconds=1.047 audio_seconds=2.380
+WARNING:  slow_inference engine=gemma priority=final utterance_id=6 queue_seconds=0.046 inference_seconds=1.477
+WARNING:  slow_caption stage=asr priority=final utterance_id=6 elapsed_seconds=1.524 audio_seconds=3.280
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=7 queue_seconds=0.991 inference_seconds=0.580
+WARNING:  slow_caption stage=asr priority=partial utterance_id=7 elapsed_seconds=1.571 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=2.976 inference_seconds=0.940
+INFO:     final_commit reason=silero_end utterance_id=7 audio_seconds=2.900
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=7 queue_seconds=0.501 inference_seconds=0.607
+WARNING:  slow_caption stage=asr priority=partial utterance_id=7 elapsed_seconds=1.108 audio_seconds=2.360
+WARNING:  slow_inference engine=gemma priority=final utterance_id=7 queue_seconds=0.510 inference_seconds=1.552
+WARNING:  slow_caption stage=asr priority=final utterance_id=7 elapsed_seconds=2.063 audio_seconds=2.900
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=8 queue_seconds=1.533 inference_seconds=0.699
+WARNING:  slow_caption stage=asr priority=partial utterance_id=8 elapsed_seconds=2.233 audio_seconds=0.560
+INFO:     final_commit reason=silero_end utterance_id=8 audio_seconds=2.860
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=4.377 inference_seconds=0.783
+WARNING:  slow_inference engine=gemma priority=final utterance_id=8 queue_seconds=0.446 inference_seconds=1.133
+WARNING:  slow_caption stage=asr priority=final utterance_id=8 elapsed_seconds=1.580 audio_seconds=2.860
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=9 queue_seconds=0.936 inference_seconds=0.626
+WARNING:  slow_caption stage=asr priority=partial utterance_id=9 elapsed_seconds=1.563 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=3.241 inference_seconds=0.607
+INFO:     final_commit reason=silero_end utterance_id=9 audio_seconds=3.000
+WARNING:  slow_inference engine=gemma priority=final utterance_id=9 queue_seconds=0.019 inference_seconds=1.133
+WARNING:  slow_caption stage=asr priority=final utterance_id=9 elapsed_seconds=1.153 audio_seconds=3.000
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=10 queue_seconds=0.556 inference_seconds=0.520
+WARNING:  slow_caption stage=asr priority=partial utterance_id=10 elapsed_seconds=1.076 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=4.585 inference_seconds=0.729
+INFO:     final_commit reason=silero_end utterance_id=10 audio_seconds=2.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=4.181 inference_seconds=0.475
+WARNING:  slow_inference engine=gemma priority=final utterance_id=10 queue_seconds=0.051 inference_seconds=1.096
+WARNING:  slow_caption stage=asr priority=final utterance_id=10 elapsed_seconds=1.148 audio_seconds=2.560
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=11 queue_seconds=0.527 inference_seconds=0.608
+WARNING:  slow_caption stage=asr priority=partial utterance_id=11 elapsed_seconds=1.136 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=5.127 inference_seconds=0.758
+INFO:     final_commit reason=silero_end utterance_id=11 audio_seconds=3.080
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=4.186 inference_seconds=1.352
+WARNING:  slow_inference engine=gemma priority=final utterance_id=11 queue_seconds=0.282 inference_seconds=2.188
+WARNING:  slow_caption stage=asr priority=final utterance_id=11 elapsed_seconds=2.471 audio_seconds=3.080
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=12 queue_seconds=1.874 inference_seconds=0.683
+WARNING:  slow_caption stage=asr priority=partial utterance_id=12 elapsed_seconds=2.557 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=6.685 inference_seconds=0.473
+INFO:     final_commit reason=silero_end utterance_id=12 audio_seconds=3.980
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=12 queue_seconds=0.452 inference_seconds=0.823
+WARNING:  slow_caption stage=asr priority=partial utterance_id=12 elapsed_seconds=1.275 audio_seconds=2.860
+WARNING:  slow_inference engine=gemma priority=final utterance_id=12 queue_seconds=0.033 inference_seconds=1.375
+WARNING:  slow_caption stage=asr priority=final utterance_id=12 elapsed_seconds=1.408 audio_seconds=3.980
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=13 queue_seconds=0.769 inference_seconds=0.554
+WARNING:  slow_caption stage=asr priority=partial utterance_id=13 elapsed_seconds=1.324 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=8.814 inference_seconds=0.552
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=6.649 inference_seconds=0.583
+INFO:     final_commit reason=silero_end utterance_id=13 audio_seconds=3.620
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=13 queue_seconds=0.455 inference_seconds=0.984
+WARNING:  slow_caption stage=asr priority=partial utterance_id=13 elapsed_seconds=1.439 audio_seconds=2.360
+WARNING:  slow_inference engine=gemma priority=final utterance_id=13 queue_seconds=0.034 inference_seconds=2.580
+WARNING:  slow_caption stage=asr priority=final utterance_id=13 elapsed_seconds=2.616 audio_seconds=3.620
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=14 queue_seconds=2.059 inference_seconds=0.706
+WARNING:  slow_caption stage=asr priority=partial utterance_id=14 elapsed_seconds=2.766 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=9.316 inference_seconds=0.914
+INFO:     final_commit reason=silero_end utterance_id=14 audio_seconds=3.260
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=14 queue_seconds=0.908 inference_seconds=1.079
+WARNING:  slow_caption stage=asr priority=partial utterance_id=14 elapsed_seconds=1.987 audio_seconds=2.420
+WARNING:  slow_inference engine=gemma priority=final utterance_id=14 queue_seconds=1.033 inference_seconds=2.019
+WARNING:  slow_caption stage=asr priority=final utterance_id=14 elapsed_seconds=3.052 audio_seconds=3.260
+INFO:     final_commit reason=silero_end utterance_id=15 audio_seconds=2.880
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=15 queue_seconds=2.498 inference_seconds=0.420
+WARNING:  slow_caption stage=asr priority=partial utterance_id=15 elapsed_seconds=2.918 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=15 queue_seconds=0.349 inference_seconds=1.265
+WARNING:  slow_caption stage=asr priority=final utterance_id=15 elapsed_seconds=1.615 audio_seconds=2.880
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=16 queue_seconds=1.085 inference_seconds=0.539
+WARNING:  slow_caption stage=asr priority=partial utterance_id=16 elapsed_seconds=1.624 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=12.199 inference_seconds=0.629
+INFO:     final_commit reason=silero_end utterance_id=16 audio_seconds=2.860
+WARNING:  slow_inference engine=gemma priority=final utterance_id=16 queue_seconds=0.145 inference_seconds=1.025
+WARNING:  slow_caption stage=asr priority=final utterance_id=16 elapsed_seconds=1.170 audio_seconds=2.860
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=17 queue_seconds=0.528 inference_seconds=0.613
+WARNING:  slow_caption stage=asr priority=partial utterance_id=17 elapsed_seconds=1.142 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=13.787 inference_seconds=0.468
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=10.105 inference_seconds=0.668
+INFO:     final_commit reason=silero_end utterance_id=17 audio_seconds=3.000
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=17 queue_seconds=0.255 inference_seconds=0.775
+WARNING:  slow_caption stage=asr priority=partial utterance_id=17 elapsed_seconds=1.031 audio_seconds=2.380
+WARNING:  slow_inference engine=gemma priority=final utterance_id=17 queue_seconds=0.264 inference_seconds=2.464
+WARNING:  slow_caption stage=asr priority=final utterance_id=17 elapsed_seconds=2.728 audio_seconds=3.000
+INFO:     final_commit reason=silero_end utterance_id=18 audio_seconds=2.560
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=18 queue_seconds=1.828 inference_seconds=0.743
+WARNING:  slow_caption stage=asr priority=partial utterance_id=18 elapsed_seconds=2.570 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=18 queue_seconds=0.340 inference_seconds=1.339
+WARNING:  slow_caption stage=asr priority=final utterance_id=18 elapsed_seconds=1.679 audio_seconds=2.560
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=19 queue_seconds=1.063 inference_seconds=0.603
+WARNING:  slow_caption stage=asr priority=partial utterance_id=19 elapsed_seconds=1.666 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=15.078 inference_seconds=0.696
+INFO:     final_commit reason=silero_end utterance_id=19 audio_seconds=3.080
+WARNING:  slow_inference engine=gemma priority=final utterance_id=19 queue_seconds=0.028 inference_seconds=1.267
+WARNING:  slow_caption stage=asr priority=final utterance_id=19 elapsed_seconds=1.296 audio_seconds=3.080
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=20 queue_seconds=0.740 inference_seconds=0.590
+WARNING:  slow_caption stage=asr priority=partial utterance_id=20 elapsed_seconds=1.330 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=14.995 inference_seconds=0.665
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=13.974 inference_seconds=0.607
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=20 queue_seconds=0.584 inference_seconds=0.913
+WARNING:  slow_caption stage=asr priority=partial utterance_id=20 elapsed_seconds=1.498 audio_seconds=2.380
+INFO:     final_commit reason=silero_end utterance_id=20 audio_seconds=4.000
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=14.326 inference_seconds=1.171
+WARNING:  slow_inference engine=gemma priority=final utterance_id=20 queue_seconds=0.864 inference_seconds=2.872
+WARNING:  slow_caption stage=asr priority=final utterance_id=20 elapsed_seconds=3.737 audio_seconds=4.000
+INFO:     final_commit reason=silero_end utterance_id=21 audio_seconds=3.620
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=21 queue_seconds=2.989 inference_seconds=0.764
+WARNING:  slow_caption stage=asr priority=partial utterance_id=21 elapsed_seconds=3.754 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=21 queue_seconds=0.029 inference_seconds=1.825
+WARNING:  slow_caption stage=asr priority=final utterance_id=21 elapsed_seconds=1.854 audio_seconds=3.620
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=22 queue_seconds=1.299 inference_seconds=0.589
+WARNING:  slow_caption stage=asr priority=partial utterance_id=22 elapsed_seconds=1.888 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=20.096 inference_seconds=0.496
+INFO:     final_commit reason=silero_end utterance_id=22 audio_seconds=3.260
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=22 queue_seconds=0.367 inference_seconds=0.647
+WARNING:  slow_caption stage=asr priority=partial utterance_id=22 elapsed_seconds=1.013 audio_seconds=2.380
+WARNING:  slow_inference engine=gemma priority=final utterance_id=22 queue_seconds=0.031 inference_seconds=1.511
+WARNING:  slow_caption stage=asr priority=final utterance_id=22 elapsed_seconds=1.543 audio_seconds=3.260
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=23 queue_seconds=1.041 inference_seconds=0.566
+WARNING:  slow_caption stage=asr priority=partial utterance_id=23 elapsed_seconds=1.607 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=21.567 inference_seconds=0.918
+INFO:     final_commit reason=silero_end utterance_id=23 audio_seconds=2.920
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=23 queue_seconds=0.521 inference_seconds=0.556
+WARNING:  slow_caption stage=asr priority=partial utterance_id=23 elapsed_seconds=1.077 audio_seconds=2.360
+INFO:     final_commit reason=silero_end utterance_id=24 audio_seconds=2.840
+WARNING:  slow_caption stage=asr priority=partial utterance_id=24 elapsed_seconds=2.595 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=23 queue_seconds=0.445 inference_seconds=3.090
+WARNING:  slow_caption stage=asr priority=final utterance_id=23 elapsed_seconds=3.536 audio_seconds=2.920
+WARNING:  slow_inference engine=gemma priority=final utterance_id=24 queue_seconds=0.384 inference_seconds=1.664
+WARNING:  slow_caption stage=asr priority=final utterance_id=24 elapsed_seconds=2.049 audio_seconds=2.840
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=25 queue_seconds=1.388 inference_seconds=0.674
+WARNING:  slow_caption stage=asr priority=partial utterance_id=25 elapsed_seconds=2.063 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=25.230 inference_seconds=0.526
+INFO:     final_commit reason=silero_end utterance_id=25 audio_seconds=2.980
+WARNING:  slow_inference engine=gemma priority=final utterance_id=25 queue_seconds=0.360 inference_seconds=1.142
+WARNING:  slow_caption stage=asr priority=final utterance_id=25 elapsed_seconds=1.503 audio_seconds=2.980
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=26 queue_seconds=0.908 inference_seconds=0.527
+WARNING:  slow_caption stage=asr priority=partial utterance_id=26 elapsed_seconds=1.435 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=25.811 inference_seconds=0.562
+INFO:     final_commit reason=silero_end utterance_id=26 audio_seconds=2.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=23.344 inference_seconds=0.596
+WARNING:  slow_inference engine=gemma priority=final utterance_id=26 queue_seconds=0.378 inference_seconds=1.099
+WARNING:  slow_caption stage=asr priority=final utterance_id=26 elapsed_seconds=1.478 audio_seconds=2.560
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=27 queue_seconds=0.853 inference_seconds=1.623
+WARNING:  slow_caption stage=asr priority=partial utterance_id=27 elapsed_seconds=2.477 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=25.408 inference_seconds=1.364
+INFO:     final_commit reason=silero_end utterance_id=27 audio_seconds=3.080
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=27 queue_seconds=1.350 inference_seconds=0.899
+WARNING:  slow_caption stage=asr priority=partial utterance_id=27 elapsed_seconds=2.249 audio_seconds=2.140
+WARNING:  slow_inference engine=gemma priority=final utterance_id=27 queue_seconds=0.824 inference_seconds=1.998
+WARNING:  slow_caption stage=asr priority=final utterance_id=27 elapsed_seconds=2.823 audio_seconds=3.080
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=28 queue_seconds=2.270 inference_seconds=0.759
+WARNING:  slow_caption stage=asr priority=partial utterance_id=28 elapsed_seconds=3.030 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=29.822 inference_seconds=0.685
+INFO:     final_commit reason=silero_end utterance_id=28 audio_seconds=4.000
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=28 queue_seconds=0.676 inference_seconds=0.590
+WARNING:  slow_caption stage=asr priority=partial utterance_id=28 elapsed_seconds=1.266 audio_seconds=3.300
+WARNING:  slow_inference engine=gemma priority=final utterance_id=28 queue_seconds=0.482 inference_seconds=1.512
+WARNING:  slow_caption stage=asr priority=final utterance_id=28 elapsed_seconds=1.996 audio_seconds=4.000
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=29 queue_seconds=1.355 inference_seconds=0.624
+WARNING:  slow_caption stage=asr priority=partial utterance_id=29 elapsed_seconds=1.979 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=28.276 inference_seconds=0.677
+INFO:     final_commit reason=silero_end utterance_id=29 audio_seconds=3.620
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=29 queue_seconds=0.654 inference_seconds=0.799
+WARNING:  slow_caption stage=asr priority=partial utterance_id=29 elapsed_seconds=1.453 audio_seconds=2.360
+WARNING:  slow_inference engine=gemma priority=final utterance_id=29 queue_seconds=0.049 inference_seconds=2.273
+WARNING:  slow_caption stage=asr priority=final utterance_id=29 elapsed_seconds=2.326 audio_seconds=3.620
+INFO:     final_commit reason=silero_end utterance_id=30 audio_seconds=3.260
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=30 queue_seconds=1.768 inference_seconds=1.701
+WARNING:  slow_caption stage=asr priority=partial utterance_id=30 elapsed_seconds=3.470 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=30 queue_seconds=0.399 inference_seconds=1.968
+WARNING:  slow_caption stage=asr priority=final utterance_id=30 elapsed_seconds=2.367 audio_seconds=3.260
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=31 queue_seconds=1.858 inference_seconds=0.591
+WARNING:  slow_caption stage=asr priority=partial utterance_id=31 elapsed_seconds=2.450 audio_seconds=0.560
+INFO:     final_commit reason=silero_end utterance_id=31 audio_seconds=2.920
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=33.698 inference_seconds=0.665
+WARNING:  slow_inference engine=gemma priority=final utterance_id=31 queue_seconds=0.483 inference_seconds=1.246
+WARNING:  slow_caption stage=asr priority=final utterance_id=31 elapsed_seconds=1.729 audio_seconds=2.920
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=32 queue_seconds=1.219 inference_seconds=0.545
+WARNING:  slow_caption stage=asr priority=partial utterance_id=32 elapsed_seconds=1.764 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=35.069 inference_seconds=0.466
+INFO:     final_commit reason=silero_end utterance_id=32 audio_seconds=2.880
+WARNING:  slow_inference engine=gemma priority=final utterance_id=32 queue_seconds=0.121 inference_seconds=1.137
+WARNING:  slow_caption stage=asr priority=final utterance_id=32 elapsed_seconds=1.260 audio_seconds=2.880
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=33 queue_seconds=0.598 inference_seconds=1.578
+WARNING:  slow_caption stage=asr priority=partial utterance_id=33 elapsed_seconds=2.177 audio_seconds=0.560
+INFO:     final_commit reason=silero_end utterance_id=33 audio_seconds=2.980
+WARNING:  slow_caption stage=asr priority=partial utterance_id=33 elapsed_seconds=1.122 audio_seconds=1.980
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=36.557 inference_seconds=1.430
+WARNING:  slow_inference engine=gemma priority=final utterance_id=33 queue_seconds=0.305 inference_seconds=2.028
+WARNING:  slow_caption stage=asr priority=final utterance_id=33 elapsed_seconds=2.334 audio_seconds=2.980
+INFO:     final_commit reason=silero_end utterance_id=34 audio_seconds=2.540
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=34 queue_seconds=1.701 inference_seconds=0.523
+WARNING:  slow_caption stage=asr priority=partial utterance_id=34 elapsed_seconds=2.224 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=34 queue_seconds=0.029 inference_seconds=1.191
+WARNING:  slow_caption stage=asr priority=final utterance_id=34 elapsed_seconds=1.221 audio_seconds=2.540
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=35 queue_seconds=0.576 inference_seconds=0.580
+WARNING:  slow_caption stage=asr priority=partial utterance_id=35 elapsed_seconds=1.156 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=37.179 inference_seconds=0.624
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=36.139 inference_seconds=0.496
+INFO:     final_commit reason=silero_end utterance_id=35 audio_seconds=3.060
+WARNING:  slow_inference engine=gemma priority=final utterance_id=35 queue_seconds=0.025 inference_seconds=1.316
+WARNING:  slow_caption stage=asr priority=final utterance_id=35 elapsed_seconds=1.341 audio_seconds=3.060
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=36 queue_seconds=0.786 inference_seconds=0.686
+WARNING:  slow_caption stage=asr priority=partial utterance_id=36 elapsed_seconds=1.472 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=37.967 inference_seconds=0.746
+INFO:     final_commit reason=silero_end utterance_id=36 audio_seconds=4.000
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=36 queue_seconds=0.207 inference_seconds=2.006
+WARNING:  slow_caption stage=asr priority=partial utterance_id=36 elapsed_seconds=2.213 audio_seconds=2.360
+WARNING:  slow_inference engine=gemma priority=final utterance_id=36 queue_seconds=0.088 inference_seconds=2.352
+WARNING:  slow_caption stage=asr priority=final utterance_id=36 elapsed_seconds=2.441 audio_seconds=4.000
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=37 queue_seconds=1.817 inference_seconds=0.642
+WARNING:  slow_caption stage=asr priority=partial utterance_id=37 elapsed_seconds=2.459 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=42.105 inference_seconds=0.540
+INFO:     final_commit reason=silero_end utterance_id=37 audio_seconds=3.640
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=37 queue_seconds=0.537 inference_seconds=0.489
+WARNING:  slow_caption stage=asr priority=partial utterance_id=37 elapsed_seconds=1.025 audio_seconds=2.780
+WARNING:  slow_inference engine=gemma priority=final utterance_id=37 queue_seconds=0.069 inference_seconds=1.566
+WARNING:  slow_caption stage=asr priority=final utterance_id=37 elapsed_seconds=1.636 audio_seconds=3.640
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=38 queue_seconds=1.080 inference_seconds=0.563
+WARNING:  slow_caption stage=asr priority=partial utterance_id=38 elapsed_seconds=1.643 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=44.174 inference_seconds=0.471
+INFO:     final_commit reason=silero_end utterance_id=38 audio_seconds=3.260
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=38 queue_seconds=0.110 inference_seconds=0.915
+WARNING:  slow_caption stage=asr priority=partial utterance_id=38 elapsed_seconds=1.026 audio_seconds=2.360
+INFO:     final_commit reason=silero_end utterance_id=39 audio_seconds=2.900
+WARNING:  slow_caption stage=asr priority=partial utterance_id=39 elapsed_seconds=3.104 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=38 queue_seconds=0.021 inference_seconds=3.682
+WARNING:  slow_caption stage=asr priority=final utterance_id=38 elapsed_seconds=3.704 audio_seconds=3.260
+WARNING:  slow_inference engine=gemma priority=final utterance_id=39 queue_seconds=0.060 inference_seconds=1.814
+WARNING:  slow_caption stage=asr priority=final utterance_id=39 elapsed_seconds=1.876 audio_seconds=2.900
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=40 queue_seconds=1.371 inference_seconds=0.650
+WARNING:  slow_caption stage=asr priority=partial utterance_id=40 elapsed_seconds=2.022 audio_seconds=0.560
+INFO:     final_commit reason=silero_end utterance_id=40 audio_seconds=2.880
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=51.113 inference_seconds=0.719
+WARNING:  slow_inference engine=gemma priority=final utterance_id=40 queue_seconds=0.167 inference_seconds=1.115
+WARNING:  slow_caption stage=asr priority=final utterance_id=40 elapsed_seconds=1.282 audio_seconds=2.880
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=41 queue_seconds=0.620 inference_seconds=0.635
+WARNING:  slow_caption stage=asr priority=partial utterance_id=41 elapsed_seconds=1.256 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=52.482 inference_seconds=0.601
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=47.198 inference_seconds=0.644
+INFO:     final_commit reason=silero_end utterance_id=41 audio_seconds=2.980
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=41 queue_seconds=0.498 inference_seconds=0.515
+WARNING:  slow_caption stage=asr priority=partial utterance_id=41 elapsed_seconds=1.014 audio_seconds=2.360
+WARNING:  slow_inference engine=gemma priority=final utterance_id=41 queue_seconds=0.323 inference_seconds=1.432
+WARNING:  slow_caption stage=asr priority=final utterance_id=41 elapsed_seconds=1.756 audio_seconds=2.980
+INFO:     final_commit reason=silero_end utterance_id=42 audio_seconds=2.580
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=42 queue_seconds=1.180 inference_seconds=1.493
+WARNING:  slow_caption stage=asr priority=partial utterance_id=42 elapsed_seconds=2.673 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=42 queue_seconds=0.427 inference_seconds=2.296
+WARNING:  slow_caption stage=asr priority=final utterance_id=42 elapsed_seconds=2.725 audio_seconds=2.580
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=43 queue_seconds=2.080 inference_seconds=0.648
+WARNING:  slow_caption stage=asr priority=partial utterance_id=43 elapsed_seconds=2.728 audio_seconds=0.560
+INFO:     final_commit reason=silero_end utterance_id=43 audio_seconds=3.060
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=50.681 inference_seconds=0.691
+WARNING:  slow_inference engine=gemma priority=final utterance_id=43 queue_seconds=0.654 inference_seconds=1.340
+WARNING:  slow_caption stage=asr priority=final utterance_id=43 elapsed_seconds=1.994 audio_seconds=3.060
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=44 queue_seconds=1.439 inference_seconds=0.619
+WARNING:  slow_caption stage=asr priority=partial utterance_id=44 elapsed_seconds=2.059 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=52.030 inference_seconds=0.719
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=44 queue_seconds=0.700 inference_seconds=0.998
+WARNING:  slow_caption stage=asr priority=partial utterance_id=44 elapsed_seconds=1.700 audio_seconds=2.420
+INFO:     final_commit reason=silero_end utterance_id=44 audio_seconds=4.000
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=50.669 inference_seconds=0.725
+INFO:     final_commit reason=silero_end utterance_id=45 audio_seconds=3.640
+WARNING:  slow_caption stage=asr priority=partial utterance_id=45 elapsed_seconds=3.520 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=44 queue_seconds=0.665 inference_seconds=4.000
+WARNING:  slow_caption stage=asr priority=final utterance_id=44 elapsed_seconds=4.666 audio_seconds=4.000
+WARNING:  slow_inference engine=gemma priority=final utterance_id=45 queue_seconds=0.527 inference_seconds=1.879
+WARNING:  slow_caption stage=asr priority=final utterance_id=45 elapsed_seconds=2.406 audio_seconds=3.640
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=46 queue_seconds=1.869 inference_seconds=0.590
+WARNING:  slow_caption stage=asr priority=partial utterance_id=46 elapsed_seconds=2.460 audio_seconds=0.560
+INFO:     final_commit reason=silero_end utterance_id=46 audio_seconds=3.280
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=54.200 inference_seconds=0.700
+WARNING:  slow_inference engine=gemma priority=final utterance_id=46 queue_seconds=0.146 inference_seconds=1.534
+WARNING:  slow_caption stage=asr priority=final utterance_id=46 elapsed_seconds=1.681 audio_seconds=3.280
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=47 queue_seconds=1.152 inference_seconds=0.580
+WARNING:  slow_caption stage=asr priority=partial utterance_id=47 elapsed_seconds=1.733 audio_seconds=0.560
+INFO:     final_commit reason=silero_end utterance_id=47 audio_seconds=2.900
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=55.758 inference_seconds=0.981
+INFO:     final_commit reason=silero_end utterance_id=48 audio_seconds=2.860
+WARNING:  slow_caption stage=asr priority=partial utterance_id=48 elapsed_seconds=2.646 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=47 queue_seconds=0.115 inference_seconds=3.590
+WARNING:  slow_caption stage=asr priority=final utterance_id=47 elapsed_seconds=3.705 audio_seconds=2.900
+WARNING:  slow_inference engine=gemma priority=final utterance_id=48 queue_seconds=0.520 inference_seconds=1.378
+WARNING:  slow_caption stage=asr priority=final utterance_id=48 elapsed_seconds=1.899 audio_seconds=2.860
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=49 queue_seconds=1.226 inference_seconds=0.704
+WARNING:  slow_caption stage=asr priority=partial utterance_id=49 elapsed_seconds=1.930 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=61.165 inference_seconds=0.638
+INFO:     final_commit reason=silero_end utterance_id=49 audio_seconds=2.980
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=49 queue_seconds=0.568 inference_seconds=0.490
+WARNING:  slow_caption stage=asr priority=partial utterance_id=49 elapsed_seconds=1.058 audio_seconds=2.360
+WARNING:  slow_inference engine=gemma priority=final utterance_id=49 queue_seconds=0.363 inference_seconds=1.199
+WARNING:  slow_caption stage=asr priority=final utterance_id=49 elapsed_seconds=1.563 audio_seconds=2.980
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=50 queue_seconds=0.987 inference_seconds=0.591
+WARNING:  slow_caption stage=asr priority=partial utterance_id=50 elapsed_seconds=1.580 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=61.470 inference_seconds=0.515
+INFO:     final_commit reason=silero_end utterance_id=50 audio_seconds=2.580
+WARNING:  slow_inference engine=gemma priority=final utterance_id=50 queue_seconds=0.410 inference_seconds=2.545
+WARNING:  slow_caption stage=asr priority=final utterance_id=50 elapsed_seconds=2.956 audio_seconds=2.580
+INFO:     final_commit reason=silero_end utterance_id=51 audio_seconds=3.100
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=51 queue_seconds=2.357 inference_seconds=1.446
+WARNING:  slow_caption stage=asr priority=partial utterance_id=51 elapsed_seconds=3.803 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=51 queue_seconds=0.927 inference_seconds=1.693
+WARNING:  slow_caption stage=asr priority=final utterance_id=51 elapsed_seconds=2.622 audio_seconds=3.100
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=52 queue_seconds=2.069 inference_seconds=0.654
+WARNING:  slow_caption stage=asr priority=partial utterance_id=52 elapsed_seconds=2.723 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=65.881 inference_seconds=0.768
+INFO:     final_commit reason=silero_end utterance_id=52 audio_seconds=4.000
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=52 queue_seconds=0.752 inference_seconds=0.468
+WARNING:  slow_caption stage=asr priority=partial utterance_id=52 elapsed_seconds=1.220 audio_seconds=3.020
+WARNING:  slow_inference engine=gemma priority=final utterance_id=52 queue_seconds=0.135 inference_seconds=1.425
+WARNING:  slow_caption stage=asr priority=final utterance_id=52 elapsed_seconds=1.560 audio_seconds=4.000
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=53 queue_seconds=0.937 inference_seconds=0.609
+WARNING:  slow_caption stage=asr priority=partial utterance_id=53 elapsed_seconds=1.547 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=67.123 inference_seconds=0.552
+INFO:     final_commit reason=silero_end utterance_id=53 audio_seconds=3.640
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=53 queue_seconds=0.088 inference_seconds=1.404
+WARNING:  slow_caption stage=asr priority=partial utterance_id=53 elapsed_seconds=1.493 audio_seconds=2.380
+INFO:     final_commit reason=silero_end utterance_id=54 audio_seconds=3.280
+WARNING:  slow_caption stage=asr priority=partial utterance_id=54 elapsed_seconds=3.014 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=53 queue_seconds=0.082 inference_seconds=3.950
+WARNING:  slow_caption stage=asr priority=final utterance_id=53 elapsed_seconds=4.032 audio_seconds=3.640
+WARNING:  slow_inference engine=gemma priority=final utterance_id=54 queue_seconds=0.229 inference_seconds=1.625
+WARNING:  slow_caption stage=asr priority=final utterance_id=54 elapsed_seconds=1.855 audio_seconds=3.280
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=55 queue_seconds=1.322 inference_seconds=0.580
+WARNING:  slow_caption stage=asr priority=partial utterance_id=55 elapsed_seconds=1.903 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=73.521 inference_seconds=0.599
+INFO:     final_commit reason=silero_end utterance_id=55 audio_seconds=2.900
+WARNING:  slow_inference engine=gemma priority=final utterance_id=55 queue_seconds=0.380 inference_seconds=1.307
+WARNING:  slow_caption stage=asr priority=final utterance_id=55 elapsed_seconds=1.688 audio_seconds=2.900
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=56 queue_seconds=1.154 inference_seconds=0.766
+WARNING:  slow_caption stage=asr priority=partial utterance_id=56 elapsed_seconds=1.921 audio_seconds=0.560
+INFO:     final_commit reason=silero_end utterance_id=56 audio_seconds=2.860
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=75.482 inference_seconds=2.120
+INFO:     final_commit reason=silero_end utterance_id=57 audio_seconds=2.980
+WARNING:  slow_caption stage=asr priority=partial utterance_id=57 elapsed_seconds=2.768 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=56 queue_seconds=1.486 inference_seconds=2.021
+WARNING:  slow_caption stage=asr priority=final utterance_id=56 elapsed_seconds=3.507 audio_seconds=2.860
+WARNING:  slow_inference engine=gemma priority=final utterance_id=57 queue_seconds=0.070 inference_seconds=1.288
+WARNING:  slow_caption stage=asr priority=final utterance_id=57 elapsed_seconds=1.358 audio_seconds=2.980
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=58 queue_seconds=0.800 inference_seconds=0.573
+WARNING:  slow_caption stage=asr priority=partial utterance_id=58 elapsed_seconds=1.374 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=80.987 inference_seconds=0.474
+INFO:     final_commit reason=silero_end utterance_id=58 audio_seconds=2.600
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=79.613 inference_seconds=0.617
+WARNING:  slow_inference engine=gemma priority=final utterance_id=58 queue_seconds=0.193 inference_seconds=1.125
+WARNING:  slow_caption stage=asr priority=final utterance_id=58 elapsed_seconds=1.318 audio_seconds=2.600
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=59 queue_seconds=0.697 inference_seconds=0.586
+WARNING:  slow_caption stage=asr priority=partial utterance_id=59 elapsed_seconds=1.284 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=76.152 inference_seconds=0.699
+INFO:     final_commit reason=silero_end utterance_id=59 audio_seconds=3.080
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=75.670 inference_seconds=0.849
+WARNING:  slow_inference engine=gemma priority=final utterance_id=59 queue_seconds=0.019 inference_seconds=3.592
+WARNING:  slow_caption stage=asr priority=final utterance_id=59 elapsed_seconds=3.612 audio_seconds=3.080
+INFO:     final_commit reason=silero_end utterance_id=60 audio_seconds=3.980
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=60 queue_seconds=3.033 inference_seconds=0.777
+WARNING:  slow_caption stage=asr priority=partial utterance_id=60 elapsed_seconds=3.810 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=60 queue_seconds=0.015 inference_seconds=1.569
+WARNING:  slow_caption stage=asr priority=final utterance_id=60 elapsed_seconds=1.585 audio_seconds=3.980
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=61 queue_seconds=0.946 inference_seconds=0.623
+WARNING:  slow_caption stage=asr priority=partial utterance_id=61 elapsed_seconds=1.569 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=81.025 inference_seconds=0.681
+INFO:     final_commit reason=silero_end utterance_id=61 audio_seconds=3.620
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=61 queue_seconds=0.239 inference_seconds=1.194
+WARNING:  slow_caption stage=asr priority=partial utterance_id=61 elapsed_seconds=1.434 audio_seconds=2.360
+WARNING:  slow_inference engine=gemma priority=final utterance_id=61 queue_seconds=0.032 inference_seconds=2.912
+WARNING:  slow_caption stage=asr priority=final utterance_id=61 elapsed_seconds=2.945 audio_seconds=3.620
+INFO:     final_commit reason=silero_end utterance_id=62 audio_seconds=3.280
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=62 queue_seconds=2.415 inference_seconds=1.314
+WARNING:  slow_caption stage=asr priority=partial utterance_id=62 elapsed_seconds=3.729 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=62 queue_seconds=0.189 inference_seconds=2.053
+WARNING:  slow_caption stage=asr priority=final utterance_id=62 elapsed_seconds=2.243 audio_seconds=3.280
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=63 queue_seconds=1.717 inference_seconds=0.620
+WARNING:  slow_caption stage=asr priority=partial utterance_id=63 elapsed_seconds=2.337 audio_seconds=0.560
+INFO:     final_commit reason=silero_end utterance_id=63 audio_seconds=2.900
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=84.168 inference_seconds=0.714
+WARNING:  slow_inference engine=gemma priority=final utterance_id=63 queue_seconds=0.436 inference_seconds=1.292
+WARNING:  slow_caption stage=asr priority=final utterance_id=63 elapsed_seconds=1.729 audio_seconds=2.900
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=64 queue_seconds=1.192 inference_seconds=0.588
+WARNING:  slow_caption stage=asr priority=partial utterance_id=64 elapsed_seconds=1.781 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=84.949 inference_seconds=0.678
+INFO:     final_commit reason=silero_end utterance_id=64 audio_seconds=2.860
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=64 queue_seconds=0.456 inference_seconds=0.645
+WARNING:  slow_caption stage=asr priority=partial utterance_id=64 elapsed_seconds=1.102 audio_seconds=2.360
+INFO:     final_commit reason=silero_end utterance_id=65 audio_seconds=2.960
+WARNING:  slow_caption stage=asr priority=partial utterance_id=65 elapsed_seconds=2.717 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=64 queue_seconds=0.544 inference_seconds=3.215
+WARNING:  slow_caption stage=asr priority=final utterance_id=64 elapsed_seconds=3.760 audio_seconds=2.860
+WARNING:  slow_inference engine=gemma priority=final utterance_id=65 queue_seconds=0.356 inference_seconds=1.609
+WARNING:  slow_caption stage=asr priority=final utterance_id=65 elapsed_seconds=1.965 audio_seconds=2.960
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=66 queue_seconds=1.364 inference_seconds=0.651
+WARNING:  slow_caption stage=asr priority=partial utterance_id=66 elapsed_seconds=2.016 audio_seconds=0.560
+INFO:     final_commit reason=silero_end utterance_id=66 audio_seconds=2.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=89.263 inference_seconds=0.514
+WARNING:  slow_inference engine=gemma priority=final utterance_id=66 queue_seconds=0.292 inference_seconds=1.162
+WARNING:  slow_caption stage=asr priority=final utterance_id=66 elapsed_seconds=1.455 audio_seconds=2.560
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=67 queue_seconds=0.832 inference_seconds=0.591
+WARNING:  slow_caption stage=asr priority=partial utterance_id=67 elapsed_seconds=1.424 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=90.296 inference_seconds=0.491
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=90.143 inference_seconds=0.748
+INFO:     final_commit reason=silero_end utterance_id=67 audio_seconds=3.080
+WARNING:  slow_inference engine=gemma priority=partial utterance_id=67 queue_seconds=0.654 inference_seconds=0.646
+WARNING:  slow_caption stage=asr priority=partial utterance_id=67 elapsed_seconds=1.301 audio_seconds=2.360
+INFO:     final_commit reason=silero_end utterance_id=68 audio_seconds=2.740
+WARNING:  slow_caption stage=asr priority=partial utterance_id=68 elapsed_seconds=2.506 audio_seconds=0.560
+WARNING:  slow_inference engine=gemma priority=final utterance_id=67 queue_seconds=0.486 inference_seconds=3.580
+WARNING:  slow_caption stage=asr priority=final utterance_id=67 elapsed_seconds=4.067 audio_seconds=3.080
+WARNING:  slow_inference engine=gemma priority=final utterance_id=68 queue_seconds=0.988 inference_seconds=1.470
+WARNING:  slow_caption stage=asr priority=final utterance_id=68 elapsed_seconds=2.458 audio_seconds=2.740
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=94.639 inference_seconds=0.566
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=91.415 inference_seconds=0.620
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=90.696 inference_seconds=0.753
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=90.109 inference_seconds=0.644
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=87.691 inference_seconds=0.937
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=84.628 inference_seconds=0.752
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=83.501 inference_seconds=1.173
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=83.384 inference_seconds=2.487
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=84.336 inference_seconds=0.901
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=80.086 inference_seconds=0.703
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=79.410 inference_seconds=0.519
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=78.587 inference_seconds=0.654
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=77.552 inference_seconds=0.538
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=76.983 inference_seconds=0.490
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=74.363 inference_seconds=0.627
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=71.850 inference_seconds=0.690
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=69.225 inference_seconds=0.868
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=68.932 inference_seconds=2.240
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=65.818 inference_seconds=1.271
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=65.463 inference_seconds=0.821
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=65.105 inference_seconds=0.507
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=63.813 inference_seconds=0.659
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=59.565 inference_seconds=0.502
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=58.780 inference_seconds=0.532
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=57.649 inference_seconds=0.716
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=57.240 inference_seconds=0.634
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=56.588 inference_seconds=0.828
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=52.975 inference_seconds=1.000
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=51.629 inference_seconds=2.322
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=52.647 inference_seconds=1.223
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=49.763 inference_seconds=0.744
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=47.140 inference_seconds=0.751
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=46.558 inference_seconds=0.799
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=46.064 inference_seconds=0.659
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=45.457 inference_seconds=0.676
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=42.273 inference_seconds=0.549
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=41.213 inference_seconds=0.652
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=40.701 inference_seconds=0.833
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=40.371 inference_seconds=2.194
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=36.508 inference_seconds=0.976
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=36.015 inference_seconds=0.584
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=36.034 inference_seconds=0.700
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=36.114 inference_seconds=0.500
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=35.218 inference_seconds=0.734
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=34.262 inference_seconds=0.771
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=33.860 inference_seconds=0.982
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=31.455 inference_seconds=0.944
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=31.695 inference_seconds=1.397
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=32.574 inference_seconds=1.543
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=32.926 inference_seconds=0.964
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=32.772 inference_seconds=0.561
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=32.644 inference_seconds=0.777
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=32.553 inference_seconds=0.788
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=29.830 inference_seconds=0.946
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=29.955 inference_seconds=0.819
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=29.607 inference_seconds=0.734
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=29.839 inference_seconds=0.644
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=29.951 inference_seconds=1.584
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=30.184 inference_seconds=1.338
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=29.694 inference_seconds=0.999
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=28.371 inference_seconds=0.851
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=27.254 inference_seconds=0.999
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=27.502 inference_seconds=0.843
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=26.887 inference_seconds=0.732
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=26.393 inference_seconds=0.577
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=26.318 inference_seconds=0.878
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=24.169 inference_seconds=0.772
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=23.965 inference_seconds=1.282
+WARNING:  slow_inference engine=gemma priority=None utterance_id=None queue_seconds=24.663 inference_seconds=0.806

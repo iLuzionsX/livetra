@@ -79,9 +79,10 @@ def read_wav_16k_mono(path: Path) -> np.ndarray:
     return mono
 
 
-def start_backend(port: int, backend_dir: Path) -> subprocess.Popen:
+def start_backend(port: int, backend_dir: Path, metrics_dir: Path) -> subprocess.Popen:
     env = os.environ.copy()
     env["PYTHONUNBUFFERED"] = "1"
+    env["CAPTION_METRICS_DIR"] = str(metrics_dir)
     return subprocess.Popen(
         ["uv", "run", "python", "-m", "uvicorn", "server:app", "--host", "127.0.0.1", "--port", str(port)],
         cwd=backend_dir,
@@ -448,14 +449,28 @@ def stats(values: list[float]) -> dict:
     }
 
 
+def load_decode_metrics(metrics_dir: Path) -> list[dict]:
+    """Per-session decode accounting written by the backend at session teardown."""
+    summaries = []
+    for path in sorted(metrics_dir.glob("decode-metrics-*.json")):
+        if path.name.endswith(".records.json"):
+            continue
+        try:
+            summaries.append(json.loads(path.read_text(encoding="utf-8")))
+        except (OSError, json.JSONDecodeError):
+            continue
+    return summaries
+
+
 async def run(args: argparse.Namespace) -> int:
     audio = read_wav_16k_mono(args.wav)
     timestamp = datetime.now().astimezone().strftime("%Y-%m-%dT%H-%M-%S%z")
     csv_path = Path(args.output_dir) / f"soak_{timestamp}.csv"
     summary_path = Path(args.output_dir) / f"soak_{timestamp}.summary.json"
     log_path = Path(args.output_dir) / f"soak_{timestamp}.backend.log"
+    metrics_dir = Path(args.output_dir) / f"soak_{timestamp}.decode-metrics"
 
-    process = start_backend(args.port, BACKEND_DIR)
+    process = start_backend(args.port, BACKEND_DIR, metrics_dir)
     log_task = asyncio.create_task(mirror_backend_log(process, log_path))
     try:
         await wait_for_health(args.port, process, args.startup_timeout)
@@ -508,17 +523,28 @@ async def run(args: argparse.Namespace) -> int:
                     await task
 
         summary, failures = summarize(rows, state, args.duration_seconds, args.inject_fault)
-        summary["csv_path"] = str(csv_path)
-        summary["backend_log_path"] = str(log_path)
-        summary["failures"] = failures
-        summary_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
-        print(json.dumps(summary, indent=2))
-        return 1 if failures else 0
     finally:
         stop_backend(process)
         log_task.cancel()
         with suppress(asyncio.CancelledError):
             await log_task
+
+    # The backend only writes decode metrics as the session tears down, so read
+    # them after it is down rather than while it is still shutting down.
+    decode_metrics = load_decode_metrics(metrics_dir)
+    if decode_metrics:
+        summary["decode_metrics"] = (
+            decode_metrics[0] if len(decode_metrics) == 1 else decode_metrics
+        )
+    else:
+        failures.append("Backend wrote no decode metrics; session teardown did not run")
+    summary["csv_path"] = str(csv_path)
+    summary["backend_log_path"] = str(log_path)
+    summary["decode_metrics_dir"] = str(metrics_dir)
+    summary["failures"] = failures
+    summary_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    print(json.dumps(summary, indent=2))
+    return 1 if failures else 0
 
 
 def parse_args() -> argparse.Namespace:
