@@ -91,9 +91,48 @@ So the same waste is reachable two ways. Promotion buys it by publishing a
 caption built from slightly less audio. Reusing the killed preview's encoded
 prefix for the final buys the same 0.70 s at no accuracy cost, because the final
 still decodes the whole utterance — it just stops re-encoding the part it already
-encoded. That one depends on whether `mlx-vlm` accepts a caller-supplied prompt
-cache, which is a spike rather than a product decision, and it is the cheaper
-thing to find out first.
+encoded.
+
+## The prefix-reuse spike: yes, with a caveat
+
+`uv run python -m scripts.spike_inherited_final` answers the three questions that
+decide whether that is buildable. Two of the three came back clean and one did
+not.
+
+**The library does accept a saved state.** `stream_generate` takes
+`prompt_cache_state`, a raw `prompt_cache`, or a full `apc_manager`, and the cache
+plumbing is public. It will not, however, hand it over on request: reuse is gated
+on `prefix_leaves_text_only_suffix`, which requires the cached prefix to cover
+*every* media placeholder token, because "until media-feature slicing is
+model-aware, restored prefixes must include every media placeholder token so the
+suffix can be embedded as text-only" (`apc.py`). A final that heard more audio
+than its preview has exactly the suffix this refuses. Any implementation has to
+slice the audio features itself and override the guard deliberately.
+
+**The model is not incremental, though.** Encoding a 3.14 s clip and the same
+clip extended to 4.20 s and comparing the shared region, 29 of 79 audio frames
+differ by more than 1e-5 and the largest difference is 13.9
+(`scripts/spike_audio_incremental.py`). The conformer encoder's chunked local
+attention does not make the embeddings boundary-stable, so a reused prefix is not
+carrying the values a from-scratch final would compute. Attention is at least
+causal over an audio-only prompt — the bidirectional overlay is gated on
+`has_visual_tokens` and excludes audio token type 3 — so nothing in the mask
+makes it worse.
+
+**The captions still came out the same.** Over 7 sentences, with the inherited
+arm going through the hard path (a completed generation, then `trim()` back to
+the shared prefix, then the final's remainder prefilled on top), all 7 finals were
+token-for-token identical to a from-scratch final. So the perturbation the
+embeddings do suffer is small enough that greedy decoding does not notice, on this
+audio.
+
+That last result is the one to be careful with, because the margin is not proven.
+The same model forked its Spanish phrasing on 1 of the same 7 sentences —
+"alrededor de una semana" against "por aproximadamente una semana" — purely from a
+different prefill chunking, with identical inputs. Near-ties exist in this output,
+so a reused final that lands near one can diverge. The 7/7 is encouraging and it
+is not a guarantee, and it is measured on synthetic `say` audio rather than a
+speaker.
 
 ## What this does and does not establish
 

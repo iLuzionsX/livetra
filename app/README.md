@@ -87,4 +87,6 @@ rollup into its summary, so a soak reports the preview-versus-final compute spli
 the token count behind each decode, and the share of finals that a completed
 preview had already covered. `scripts/decode_tradeoff.py` reads those files back
 and prices a proposed change against them, so an optimisation can be costed
-before it is written.
+before it is written. `scripts/spike_audio_incremental.py` and
+`scripts/spike_inherited_final.py` are the measurements behind the prefix-reuse
+finding in `docs/DECODE_COST.md`; they load the model and take a minute.
