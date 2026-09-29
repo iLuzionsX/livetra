@@ -85,4 +85,6 @@ Set `CAPTION_METRICS_DIR` to a directory and each session writes
 (per decode) when it tears down. `scripts/soak.py` sets this itself and folds the
 rollup into its summary, so a soak reports the preview-versus-final compute split,
 the token count behind each decode, and the share of finals that a completed
-preview had already covered.
+preview had already covered. `scripts/decode_tradeoff.py` reads those files back
+and prices a proposed change against them, so an optimisation can be costed
+before it is written.

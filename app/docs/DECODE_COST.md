@@ -60,6 +60,41 @@ ending before any preview covering its tail can finish. Coalescing only ever
 blocked a third submission that was not happening, while keeping the GPU loaded
 longer, which slowed every decode including the finals.
 
+The largest remaining opportunity is the final decode itself, which is roughly
+half of all inference. The untested idea is to let the in-flight preview finish
+at commit and promote its output to the final instead of cancelling it. That
+changes caption semantics, so it needs a decision before it gets an experiment.
+
+## What promoting would actually cost, measured
+
+`uv run python -m scripts.decode_tradeoff` reads the runs above and prices the
+promotion. Two of its numbers change how the decision should be framed.
+
+**The accuracy cost is much smaller than the clip lengths suggest.** The promoted
+preview holds 76% of the final's audio, but most of the difference is silence. The
+*voiced* speech it would fail to decode is a median of 0.20 s (mean 0.33 s, max
+1.54 s) on continuous speech, and 0.00 s on the disjointed sample. A third of
+continuous-speech utterances would lose nothing at all, because everything said
+was already in the preview. That is a word or two, on two utterances in three —
+not a systematically truncated caption.
+
+**Most of the saving is not the final disappearing.** A preview killed at commit
+has already spent 0.70 s of GPU and emitted 0 tokens. Promoting saves an estimated
+1.02 s of the 2.77 s an utterance costs today (37%, bounded by 25% and 52%) — but
+only 0.33 s of that is the final decode that never runs. The other 0.70 s is
+prefill that is paid today and discarded. A preview that reaches 0 tokens after
+0.70 s also says prefill, not decode, is most of a decode's cost, which is the
+opposite of what the 1.13 s to 3.81 s source-to-translation gap in
+`stall-comparison-2026-09-25.json` was taken to mean.
+
+So the same waste is reachable two ways. Promotion buys it by publishing a
+caption built from slightly less audio. Reusing the killed preview's encoded
+prefix for the final buys the same 0.70 s at no accuracy cost, because the final
+still decodes the whole utterance — it just stops re-encoding the part it already
+encoded. That one depends on whether `mlx-vlm` accepts a caller-supplied prompt
+cache, which is a spike rather than a product decision, and it is the cheaper
+thing to find out first.
+
 ## What this does and does not establish
 
 Absolute seconds here reflect 3.1 s synthetic utterances with 0.3 s pauses. The
@@ -67,9 +102,12 @@ recorded-passage evidence in `stall-comparison-2026-09-25.json` shows much slowe
 finals (3.81 s to a translated caption) on longer speech. The structural findings
 above are the durable ones; the absolute costs are not.
 
-The largest remaining opportunity is the final decode itself, which is roughly
-half of all inference. The untested idea is to let the in-flight preview finish
-at commit and promote its output to the final instead of cancelling it. That
-would remove most of the final decode, at the cost of a final caption built from
-audio that predates the last few hundred milliseconds of speech. It changes
-caption semantics, so it needs a decision before it gets an experiment.
+The counts are sturdier than the timings, too. Zero reuse across 210 utterances
+in three runs, a surviving preview that only ever covers the early audio, and a
+killed preview that never emits a token are counts, and they hold in every run.
+The seconds are not so safe: median RSS across three runs of identical work
+ranged from 2.4 GB to 5.6 GB, which is enough machine-state drift that one run per
+arm cannot separate a change from the machine it ran on. The coalescing result is
+directionally consistent across nine metrics and worth believing as a warning; it
+is not a controlled measurement.
+
