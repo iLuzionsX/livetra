@@ -94,7 +94,7 @@ def test_queued_ast_previews_coalesce_and_final_keeps_priority():
         await asyncio.sleep(0)
 
         assert await first_preview is None
-        queued_preview = worker._queued_partial_jobs[7]
+        queued_preview = worker._queued_partial_jobs[(None, 7)]
         np.testing.assert_array_equal(
             queued_preview.payload["audio_f32_16k"],
             np.full(16000, 0.2, dtype=np.float32),

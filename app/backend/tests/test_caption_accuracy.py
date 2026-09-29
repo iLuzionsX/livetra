@@ -6,6 +6,7 @@ from session import DecodeLedger, TranscriptionSession, UtteranceRuntime
 
 def session(source="English", code_switching=False):
     value = object.__new__(TranscriptionSession)
+    value.session_id = "test-session"
     value.state = SimpleNamespace(config=ConfigMessage(
         source_lang=source, code_switching_enabled=code_switching))
     value._decode_ledger = DecodeLedger()

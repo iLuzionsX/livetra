@@ -50,6 +50,7 @@ def install_worker(value, result):
 
 def make_session():
     value = object.__new__(TranscriptionSession)
+    value.session_id = "test-session"
     value.state = SimpleNamespace(
         config=ConfigMessage(source_lang="English"),
         prior_context=[],
@@ -61,7 +62,7 @@ def make_session():
     value._finalized = set()
     value._finalizing = {}
     value._finalize_lock = asyncio.Lock()
-    value.worker = SimpleNamespace(finish_partials=lambda utterance_id: None)
+    value.worker = SimpleNamespace(finish_partials=lambda utterance_id, session_id=None: None)
     value.segmenter = SimpleNamespace(reset=lambda: None)
     value._send_and_broadcast = AsyncMock()
     value._maybe_commit_early = AsyncMock()

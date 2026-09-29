@@ -175,6 +175,34 @@ small. `AST_REUSE_ENABLED` does not exist in the tree. The durable findings from
 are the two sentences above and the fact that the audio tower, not the language
 model prefill, is the cost worth attacking.
 
+## Publishing a completed preview was built, tested, and removed
+
+The remaining cheap idea was to publish a completed preview as the final when it
+had already decoded exactly the commit's voiced content — same speech, same
+prompt, no re-decode. It was implemented with guards (complete previews only,
+exact voiced-signature match, prompt settings unchanged since the preview) and
+unit-tested, and then measured: its trigger condition occurs **0 times in over
+300 utterances**, across five soaks and three single-word sessions.
+
+The reason is the same structural one as above. A preview that covers the tail
+of an utterance is still decoding when the commit lands, so it is killed, not
+completed. The previews that survive to complete only ever cover the early
+audio, and the match requires hash equality, so even a tenth of a second of new
+speech breaks it. An earlier estimate of "a third of utterances" was a
+miscategorisation: that third was the *in-flight* preview holding everything,
+which is the promote-and-truncate trade, not this one. The code was removed
+rather than kept behind a flag. Unexercised paths rot, and the one time this
+repo kept a flag for a losing idea it had to be reverted anyway.
+
+The same work fixed a real bug found along the way: utterance ids restart at 1
+in every session, but the worker retired them globally, so after one session
+ended every later session's previews were dropped unheard. Retirement keys are
+now `(session_id, utterance_id)`, verified by running three sessions against one
+backend and confirming each gets live previews, and by showing the old code
+drops the second session's. The cross-process payload is also pinned by test to
+carry only arguments the worker accepts, after a routing key leaked across it
+and crashed the worker on every decode until caught by a soak.
+
 ## What this does and does not establish
 
 Absolute seconds here reflect 3.1 s synthetic utterances with 0.3 s pauses. The

@@ -381,8 +381,8 @@ class MLXWorkerService:
         self._request_queue: mp.Queue | None = None
         self._response_queue: mp.Queue | None = None
         self._active_job_kind: Literal["ast", "polish", "maintenance"] | None = None
-        self._queued_partial_jobs: dict[int, _QueuedJob] = {}
-        self._final_utterance_ids: set[int] = set()
+        self._queued_partial_jobs: dict[tuple[str | None, int], _QueuedJob] = {}
+        self._final_utterance_ids: set[tuple[str | None, int]] = set()
         self._mp_context = mp.get_context("spawn")
         self._cancelled_job_id = self._mp_context.Value("q", -1)
         self._active_job: _QueuedJob | None = None
@@ -448,6 +448,7 @@ class MLXWorkerService:
         max_tokens: int,
         on_progress: Callable[[str], Awaitable[None]] | None = None,
         on_stats: Callable[[DecodeStats], None] | None = None,
+        session_id: str | None = None,
     ) -> ASTResult | None:
         loop = asyncio.get_running_loop()
         future: asyncio.Future = loop.create_future()
@@ -461,6 +462,7 @@ class MLXWorkerService:
             payload={
                 "priority": priority,
                 "utterance_id": utterance_id,
+                "session_id": session_id,
                 "audio_f32_16k": audio_f32_16k,
                 "src": src,
                 "tgt": tgt,
@@ -471,18 +473,22 @@ class MLXWorkerService:
             },
         )
         if utterance_id is not None:
-            previous = self._queued_partial_jobs.get(utterance_id)
+            # Utterance ids restart at 1 in every session, so without the session
+            # in the key a reconnect silently inherits the previous session's
+            # retired ids and all of its previews are dropped unheard.
+            key = (session_id, utterance_id)
+            previous = self._queued_partial_jobs.get(key)
             if priority == "partial":
-                if utterance_id in self._final_utterance_ids:
+                if key in self._final_utterance_ids:
                     future.set_result(None)
                     return await future
                 if previous is not None and not previous.future.done():
                     previous.future.set_result(None)
-                self._queued_partial_jobs[utterance_id] = job
+                self._queued_partial_jobs[key] = job
             else:
-                self._final_utterance_ids.add(utterance_id)
+                self._final_utterance_ids.add(key)
                 if previous is not None:
-                    self._queued_partial_jobs.pop(utterance_id, None)
+                    self._queued_partial_jobs.pop(key, None)
                     if not previous.future.done():
                         previous.future.set_result(None)
         await self._queue.put(job)
@@ -502,17 +508,35 @@ class MLXWorkerService:
         )
         return await future
 
-    def finish_partials(self, utterance_id: int) -> None:
+    def finish_partials(
+        self, utterance_id: int, session_id: str | None = None
+    ) -> None:
         """Retire queued previews immediately when audio commits, before final ASR finishes."""
-        self._final_utterance_ids.add(utterance_id)
+        key = (session_id, utterance_id)
+        self._final_utterance_ids.add(key)
         active = self._active_job
         if (active is not None and active.kind == "ast"
                 and active.payload.get("priority") == "partial"
-                and active.payload.get("utterance_id") == utterance_id):
+                and active.payload.get("utterance_id") == utterance_id
+                and active.payload.get("session_id") == session_id):
             self._cancelled_job_id.value = active.sequence
-        job = self._queued_partial_jobs.pop(utterance_id, None)
+        job = self._queued_partial_jobs.pop(key, None)
         if job is not None and not job.future.done():
             job.future.set_result(None)
+
+    def release_session(self, session_id: str | None) -> None:
+        """Forget a disconnected session's retired ids so the keys cannot grow forever."""
+        if session_id is None:
+            return
+        self._final_utterance_ids = {
+            key for key in self._final_utterance_ids if key[0] != session_id
+        }
+        for key in [
+            key for key in self._queued_partial_jobs if key[0] == session_id
+        ]:
+            job = self._queued_partial_jobs.pop(key)
+            if not job.future.done():
+                job.future.set_result(None)
 
 
     async def submit_maintenance(self) -> None:
@@ -613,10 +637,11 @@ class MLXWorkerService:
         utterance_id = job.payload.get("utterance_id")
         if not isinstance(utterance_id, int):
             return False
-        if utterance_id in self._final_utterance_ids:
+        key = (job.payload.get("session_id"), utterance_id)
+        if key in self._final_utterance_ids:
             return True
         if job.kind == "ast":
-            queued_job = self._queued_partial_jobs.get(utterance_id)
+            queued_job = self._queued_partial_jobs.get(key)
             queued_jobs = self._queued_partial_jobs
         else:
             return False
@@ -624,7 +649,7 @@ class MLXWorkerService:
             return False
         if queued_job.sequence != job.sequence:
             return True
-        queued_jobs.pop(utterance_id, None)
+        queued_jobs.pop(key, None)
         return False
 
     async def _run_temp_wav_sweeper(self) -> None:
@@ -670,7 +695,7 @@ class MLXWorkerService:
             payload = {
                 key: value
                 for key, value in job.payload.items()
-                if key != "utterance_id"
+                if key not in ("utterance_id", "session_id")
             }
         request = {
             "job_id": job.sequence,

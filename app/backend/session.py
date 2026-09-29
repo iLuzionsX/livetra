@@ -585,6 +585,7 @@ class TranscriptionSession:
             await self.hub.detach(self.session_id, self)
             await self._finalize_archive()
             await self._write_decode_metrics()
+            self.worker.release_session(self.session_id)
             for task in self._jobs:
                 task.cancel()
             await asyncio.gather(*self._jobs, return_exceptions=True)
@@ -789,7 +790,7 @@ class TranscriptionSession:
             if utterance_id in self._finalized or utterance_id in self._finalizing:
                 return False
             self._finalizing[utterance_id] = reason
-            self.worker.finish_partials(utterance_id)
+            self.worker.finish_partials(utterance_id, self.session_id)
             if self.state.active_utterance_id == utterance_id:
                 self.state.active_utterance_id = None
             if reset_segmenter:
@@ -955,6 +956,7 @@ class TranscriptionSession:
             result = await self.worker.submit_ast(
                 priority="final" if priority == "final" else "partial",
                 utterance_id=utterance_id,
+                session_id=self.session_id,
                 audio_f32_16k=audio,
                 src=self.state.config.source_lang,
                 tgt=self.state.config.target_lang,
