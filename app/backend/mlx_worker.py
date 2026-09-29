@@ -7,6 +7,7 @@ import multiprocessing as mp
 import os
 import queue
 import re
+import sys
 import tempfile
 import time
 import traceback
@@ -838,6 +839,15 @@ def _worker_process_main(
     temp_wav_root: str,
     cancelled_job_id,
 ) -> None:
+    # A spawned process inherits no logging configuration, so without this every
+    # INFO line this worker emits is dropped and the engine log looks empty where
+    # the decode actually happens. Worker-side diagnostics are the only way to see
+    # what a decode did, and their absence previously read as "nothing happened".
+    logging.basicConfig(
+        level=os.getenv("LIVETR3_LOG_LEVEL", "INFO"),
+        format="%(levelname)s  %(message)s",
+        stream=sys.stderr,
+    )
     try:
         worker = MLXWorker(Path(temp_wav_root))
     except Exception:

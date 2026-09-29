@@ -89,9 +89,9 @@ opposite of what the 1.13 s to 3.81 s source-to-translation gap in
 
 So the same waste is reachable two ways. Promotion buys it by publishing a
 caption built from slightly less audio. Reusing the killed preview's encoded
-prefix for the final buys the same 0.70 s at no accuracy cost, because the final
-still decodes the whole utterance — it just stops re-encoding the part it already
-encoded.
+prefix for the final looks like it buys the same 0.70 s at no accuracy cost,
+because the final still decodes the whole utterance. The next section is that
+attempt, and it fails.
 
 ## The prefix-reuse spike: yes, with a caveat
 
@@ -133,6 +133,47 @@ different prefill chunking, with identical inputs. Near-ties exist in this outpu
 so a reused final that lands near one can diverge. The 7/7 is encouraging and it
 is not a guarantee, and it is measured on synthetic `say` audio rather than a
 speaker.
+
+## Prefix reuse was built, measured, and rejected
+
+The 7/7 was encouraging enough to build it, so it was implemented behind
+`AST_REUSE_ENABLED` (off by default) and run against the same passage twice, 150 s
+each, once off and once on.
+
+It works. 44 of 44 finals continued from a preview's cache, reusing 131 to 319
+prefix tokens each, with 0 errors in both arms.
+
+**The captions are corrupted anyway.** Comparing the two sessions' archives
+utterance by utterance: the source transcript was identical in 43 of 44, and the
+translation in **0 of 44** — every one truncated mid-sentence. "Gracias por
+unirse." came back as "Gracias por". "Hoy quiero repasar tres cosas." came back as
+"Hoy quiero repasar tres."
+
+The cause is the guard described above, and bypassing it is what broke it.
+`_prefix_cache_trim_amount` refuses to trim a cache it cannot trim safely, because
+Gemma 4's sliding-window attention layers make the cache a ring buffer: trimming it
+by a logical length "leaves the ring index stale: silent output corruption". The
+implementation checked only that a `trim` method existed and trimmed anyway. The
+corrupted state is not a crash, it is a model that quietly loses the thread and
+emits an early end-of-turn, which is exactly a truncated translation.
+
+That guard is load-bearing. It is not conservatism to be argued with on the
+strength of 7 agreeing sentences.
+
+**The saving was also smaller than projected, for a separate reason.** The final
+decode went from 1.282 s to 1.169 s (8.8%), the caption after the pause from a
+1.762 s median to 1.596 s, and total inference fell 3.7% — against the 25% to 37%
+estimated above. The reason is that reusing the KV cache does not reuse the audio
+encoding: `get_input_embeddings` re-runs the conformer over the whole clip, and
+that is where most of the prefill cost is. The library offers no way to inject
+precomputed audio soft tokens, because its `cached_*` hook is wired for images and
+video only. So even a correct implementation of this would be worth single-digit
+percent, not a third.
+
+Both halves of the idea therefore fail: the captions break, and the prize is
+small. `AST_REUSE_ENABLED` does not exist in the tree. The durable findings from it
+are the two sentences above and the fact that the audio tower, not the language
+model prefill, is the cost worth attacking.
 
 ## What this does and does not establish
 
