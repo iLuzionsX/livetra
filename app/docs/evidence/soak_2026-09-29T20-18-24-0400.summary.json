@@ -1,0 +1,181 @@
+{
+  "duration_seconds": 240.0,
+  "final_count": 19,
+  "error_count": 0,
+  "rss_bytes": {
+    "min": 1449721856.0,
+    "median": 1637629952.0,
+    "p95": 1646306918.4,
+    "max": 1648099328.0
+  },
+  "temp_file_count": {
+    "min": 0.0,
+    "median": 0.0,
+    "p95": 0.0,
+    "max": 0.0
+  },
+  "archive_entry_count": {
+    "min": 380.0,
+    "median": 380.0,
+    "p95": 380.0,
+    "max": 380.0
+  },
+  "final_latency_seconds": {
+    "min": 7.148809375008568,
+    "median": 16.92623395798728,
+    "p95": 17.461666395445356,
+    "max": 17.56489470798988
+  },
+  "silence_to_final_seconds": {
+    "min": 2.212368965148926,
+    "median": 4.206511735916138,
+    "p95": 4.515503931045532,
+    "max": 4.51766300201416
+  },
+  "commit_reason_counts": {
+    "max_utterance_cap": 9,
+    "silero_end": 10
+  },
+  "commit_reason_percentages": {
+    "max_utterance_cap": 47.368421052631575,
+    "silero_end": 52.63157894736842
+  },
+  "early_final_latency_seconds": {
+    "min": 7.148809375008568,
+    "median": 16.92623395798728,
+    "p95": 17.461666395445356,
+    "max": 17.56489470798988
+  },
+  "late_final_latency_seconds": {
+    "min": 7.148809375008568,
+    "median": 16.92623395798728,
+    "p95": 17.461666395445356,
+    "max": 17.56489470798988
+  },
+  "status_events": [
+    {
+      "elapsed_seconds": 0.7535977080697194,
+      "payload": {
+        "type": "status",
+        "state": "ready",
+        "message": "Model worker ready"
+      }
+    }
+  ],
+  "events": [],
+  "decode_metrics": {
+    "decode_count": 123,
+    "commit_count": 19,
+    "by_priority": {
+      "partial": {
+        "wall_seconds": {
+          "count": 104,
+          "total": 232.287,
+          "mean": 2.234,
+          "median": 2.278,
+          "max": 3.004
+        },
+        "inference_seconds": {
+          "count": 104,
+          "total": 189.7,
+          "mean": 1.824,
+          "median": 2.008,
+          "max": 2.993
+        },
+        "audio_seconds": {
+          "count": 104,
+          "total": 520.28,
+          "mean": 5.003,
+          "median": 4.18,
+          "max": 11.82
+        },
+        "generated_tokens": 2373,
+        "attempts": 65,
+        "truncated": 0,
+        "cancelled": 39,
+        "measured_inference": 84,
+        "outcomes": {
+          "cancelled": 39,
+          "partial": 65
+        },
+        "inference_share_percent": 71.7
+      },
+      "final": {
+        "wall_seconds": {
+          "count": 19,
+          "total": 75.736,
+          "mean": 3.986,
+          "median": 4.105,
+          "max": 4.38
+        },
+        "inference_seconds": {
+          "count": 19,
+          "total": 74.935,
+          "mean": 3.944,
+          "median": 4.06,
+          "max": 4.35
+        },
+        "audio_seconds": {
+          "count": 19,
+          "total": 216.82,
+          "mean": 11.412,
+          "median": 11.58,
+          "max": 12.0
+        },
+        "generated_tokens": 1668,
+        "attempts": 19,
+        "truncated": 0,
+        "cancelled": 0,
+        "measured_inference": 19,
+        "outcomes": {
+          "final": 19
+        },
+        "inference_share_percent": 28.3
+      }
+    },
+    "final_redundancy": {
+      "commits": 19,
+      "matched_complete_partial": 0,
+      "matched_percent": 0.0,
+      "redundant_final_inference_seconds": 0,
+      "redundant_finals": 0
+    },
+    "promotion": {
+      "commits": 19,
+      "promoted_inflight": 0,
+      "promoted_percent": 0.0,
+      "gap_seconds": {
+        "count": 0,
+        "total": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      }
+    },
+    "partials_per_utterance": {
+      "submitted": {
+        "count": 19,
+        "total": 104.0,
+        "mean": 5.474,
+        "median": 6.0,
+        "max": 7.0
+      },
+      "completed": {
+        "count": 19,
+        "total": 65.0,
+        "mean": 3.421,
+        "median": 3.0,
+        "max": 5.0
+      }
+    },
+    "commit_reasons": {
+      "max_utterance_cap": 9,
+      "silero_end": 10
+    },
+    "session_id": "506dd3b4-937d-4be4-8391-39f945e081a3"
+  },
+  "csv_path": "../docs/evidence/soak_2026-09-29T20-18-24-0400.csv",
+  "backend_log_path": "../docs/evidence/soak_2026-09-29T20-18-24-0400.backend.log",
+  "decode_metrics_dir": "../docs/evidence/soak_2026-09-29T20-18-24-0400.decode-metrics",
+  "failures": []
+}

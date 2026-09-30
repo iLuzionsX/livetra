@@ -43,13 +43,16 @@ app and both backend transports use this same path without an engine override.
   250 ms, a 12-second utterance cap, and a 150 ms silence threshold. Scheduling
   cadence is not a promise that inference finishes within 250 ms.
 - Each partial decodes the complete utterance so far and replaces the previous
-  hypothesis. Final ASR runs again on the completed utterance.
+  hypothesis. Final ASR runs again on the completed utterance's transcribable
+  clip — the same trimmed span the previews decode — so it never re-encodes
+  the VAD's trailing silence, which carries no words.
 - Gemma streams source text followed by translation from the same response.
   Generation uses greedy decoding. Incomplete finals get one bounded retry and
   cannot be published as complete captions.
 - Preview pacing adapts to inference turnaround. Final jobs outrank previews,
-  and committing audio cancels obsolete previews. Finalizing one utterance does not stop
-  partials for the next. Failed or empty finals release their pending state.
+  and committing audio cancels obsolete previews. Finalizing one utterance does
+  not stop partials for the next. Failed or empty finals release their pending
+  state.
 - Automatic transcript correction and learning are removed. Existing vocabulary,
   archives, and legacy profile files are retained; stored corrections do not feed
   inference. Optional polish and speculative commits remain off by default.

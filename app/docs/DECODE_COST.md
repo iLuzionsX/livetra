@@ -76,7 +76,9 @@ preview holds 76% of the final's audio, but most of the difference is silence. T
 1.54 s) on continuous speech, and 0.00 s on the disjointed sample. A third of
 continuous-speech utterances would lose nothing at all, because everything said
 was already in the preview. That is a word or two, on two utterances in three —
-not a systematically truncated caption.
+not a systematically truncated caption. Once the gate existed, its own
+accounting measured the real in-flight gap at close to three times this on a
+comparable passage; the correction is in the promotion section below.
 
 **Most of the saving is not the final disappearing.** A preview killed at commit
 has already spent 0.70 s of GPU and emitted 0 tokens. Promoting saves an estimated
@@ -202,6 +204,92 @@ backend and confirming each gets live previews, and by showing the old code
 drops the second session's. The cross-process payload is also pinned by test to
 carry only arguments the worker accepts, after a routing key leaked across it
 and crashed the worker on every decode until caught by a soak.
+
+## The trim is in; promotion was built, measured, and removed
+
+Two changes came out of the findings above. One is in the tree for good. The
+other was built behind a flag, priced by four more soaks, and removed.
+
+**The final decodes the same transcribable clip the previews decode.** It used
+to re-encode the commit's raw audio, including the VAD's trailing-silence
+window, while every preview decoded the trimmed span. The final now sends the
+trimmed clip, so its conformer cost covers speech plus the 0.3 s pad and
+nothing else. No semantic change: the voiced span is byte-identical by the
+signature the ledger already computes, and commit and decode records describe
+the same clip. Its seconds were never isolated — every arm below carries it —
+so the new baseline numbers absorb it rather than attribute it.
+
+**In-flight promotion was built behind `PROMOTE_INFLIGHT_ENABLED`.** At commit,
+when a preview for the utterance was mid-decode and the voiced speech its clip
+had not covered was at most `PROMOTE_INFLIGHT_MAX_GAP_SECONDS` (0.30 s), the
+commit would let it finish and publish its output as the final caption instead
+of cancelling its spent prefill and re-decoding the utterance, falling back to
+the real final whenever the preview came back unusable. The build under test
+also recorded, at every commit, the gap the gate evaluated — accepted or
+refused — so a soak that promoted nothing could say why.
+
+The soaks ran over a new passage built for the purpose: eight `say` sentences
+(~3.1 s each) separated by explicit 350 ms silences (`[[slnc 350]]`), 27.6 s
+looped for 240 s per arm, 61 finals each, 0 errors, 0 failures. The original
+passage is gone from the tree, and a plain `say` voice does not pause long
+enough at periods for Silero to commit every sentence, so the explicit silences
+are what makes this workload reproducible. Four arms: the passage twice at
+`PARTIAL_INTERVAL_SECONDS=2`, then twice at the native 250 ms cadence, each pair
+once with promotion off and once on. Evidence:
+`soak_2026-09-29T20-34-28-0400.*` and `soak_2026-09-29T20-39-38-0400.*` (2 s
+cadence, off and on), `soak_2026-09-29T20-47-03-0400.*` and
+`soak_2026-09-29T20-52-11-0400.*` (native, off and on), in `app/docs/evidence/`.
+
+| | 2 s off | 2 s on | native off | native on |
+|---|---|---|---|---|
+| finals | 61 | 61 | 61 | 61 |
+| promotions | 0 | 0 | 0 | 0 |
+| in-flight at commit, refused | — | 29 | — | 30 |
+| refused gap, median / max | — | 0.56 / 0.74 s | — | 0.56 / 0.74 s |
+| silence to final, median | 1.810 s | 1.806 s | 1.813 s | 1.818 s |
+| final decode, mean | 1.462 s | 1.462 s | 1.471 s | 1.465 s |
+| total inference | 187.6 s | 187.8 s | 188.5 s | 188.1 s |
+
+**The 0.20 s premise was wrong, and the gap is not a scheduling artifact.**
+The gate refused every commit it evaluated, at both cadences, because the real
+in-flight gap is a median of 0.56 s (max 0.74 s) — close to three times the
+0.20 s the proxy had measured on the original passage. The proxy recomputed
+over these same runs agrees (median 0.58 s), so the finding does not depend on
+the refusal accounting that left the tree with the feature. The identical
+refusal distributions at 2 s and 250 ms preview intervals say why: the worker
+decodes one job at a time, so the preview mid-decode at commit was submitted
+roughly one decode turnaround before the commit. The gap tracks turnaround,
+not the configured interval; no preview-cadence knob closes it.
+
+**Half the commits had nothing to promote.** Only 29 and 30 of 61 commits had
+a preview mid-decode at all — the rest had completed their last preview during
+the trailing pause. Even ungated, promotion could never have covered more than
+about half the commits, and each promoted caption would have missed a median
+0.56 s of tail speech — about two words at this passage's rate, words the next
+utterance's caption never recovers.
+
+**The bound held where promotion would have been most dangerous.** Two earlier
+240 s runs over a passage whose sentences merged into ~11.4 s utterances
+(`soak_2026-09-29T20-18-24-0400.*` and `soak_2026-09-29T20-23-38-0400.*`, 19
+finals each, 9 of them at the 12 s cap) priced the in-flight gap at a median
+of 1.6 s. The gate refused all of them — exactly the utterances where a
+promoted caption would have been most visibly truncated.
+
+**The dormant flag was measurably free.** With promotion on but never firing,
+latency, inference, and every caption were indistinguishable from baseline;
+the archives are identical, 61 of 61, in both pairs.
+
+So the trade the 37% estimate priced does not exist on this hardware: at the
+0.30 s bound the trigger fires 0 times in 122 commits, and the threshold that
+would make it fire — 0.56 s and up — is the systematic tail truncation that
+removed publish-completed-preview and reverted prefix reuse. The feature was
+removed rather than kept behind a flag, per this document's precedent:
+unexercised paths rot, and this one is measured not to exercise. The durable
+findings are the turnaround-bound gap law, the half-the-commits ceiling, and
+the wake condition the law implies: promotion becomes live when a preview's
+decode turnaround falls to roughly 0.6 s — about twice as fast as these runs —
+at which point the median gap can meet the 0.30 s bound. The pricing that
+would justify rebuilding it is `scripts/decode_tradeoff` over any newer soak.
 
 ## What this does and does not establish
 

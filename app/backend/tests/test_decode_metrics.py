@@ -13,6 +13,7 @@ from session import (
     DecodeLedger,
     TranscriptionSession,
     UtteranceRuntime,
+    _trim_to_transcribable_audio,
     _voiced_signature,
 )
 
@@ -195,6 +196,39 @@ def test_summary_reports_the_partial_versus_final_compute_split():
         assert by_priority["partial"]["inference_share_percent"] == pytest.approx(25.0)
         assert by_priority["final"]["inference_share_percent"] == pytest.approx(75.0)
         assert summary["by_priority"]["final"]["generated_tokens"] == 24
+
+    asyncio.run(run())
+
+
+def test_final_decodes_the_same_transcribable_clip_previews_decode():
+    async def run():
+        value = make_session()
+        scheduled = []
+        value._schedule_ast = lambda priority, uid, audio: scheduled.append(
+            (priority, uid, audio)
+        )
+
+        # Leading and trailing silence around the speech: the VAD's windows,
+        # which the previews never decode and the final has no words for.
+        padded = np.concatenate(
+            [
+                np.zeros(16_000, dtype=np.float32),
+                SPEECH,
+                np.zeros(16_000, dtype=np.float32),
+            ]
+        )
+        assert await value._commit_utterance(
+            1, padded, reason="silero_end", reset_segmenter=True
+        )
+
+        priority, utterance_id, audio = scheduled[0]
+        assert (priority, utterance_id) == ("final", 1)
+        assert audio.size == _trim_to_transcribable_audio(padded).size
+        assert audio.size < padded.size
+        # The voiced span survives the trim.
+        assert _voiced_signature(audio) == _voiced_signature(padded)
+        commit = value._decode_ledger.commits[0]
+        assert commit["audio_seconds"] == pytest.approx(audio.size / 16_000)
 
     asyncio.run(run())
 

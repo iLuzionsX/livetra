@@ -799,7 +799,7 @@ class TranscriptionSession:
                 "final_commit reason=%s utterance_id=%s audio_seconds=%.3f",
                 reason,
                 utterance_id,
-                audio.shape[0] / 16_000,
+                transcribable_audio.shape[0] / 16_000,
             )
             runtime = self._utterance_runtime.get(utterance_id)
             commit_voiced = _voiced_signature(transcribable_audio)
@@ -818,7 +818,10 @@ class TranscriptionSession:
                 partials_submitted=runtime.partials_submitted if runtime else 0,
                 partials_completed=runtime.partials_completed if runtime else 0,
             )
-            self._schedule_ast("final", utterance_id, audio)
+            # The final decodes the same transcribable clip the previews
+            # decode, so it never pays the conformer for the VAD's trailing
+            # silence, which carries no words.
+            self._schedule_ast("final", utterance_id, transcribable_audio)
             return True
 
     def _schedule_ast(

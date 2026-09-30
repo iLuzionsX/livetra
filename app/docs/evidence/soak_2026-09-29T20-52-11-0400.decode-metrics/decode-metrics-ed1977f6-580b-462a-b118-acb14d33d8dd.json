@@ -1,0 +1,119 @@
+{
+  "decode_count": 183,
+  "commit_count": 61,
+  "by_priority": {
+    "partial": {
+      "wall_seconds": {
+        "count": 122,
+        "total": 150.35,
+        "mean": 1.232,
+        "median": 1.163,
+        "max": 1.798
+      },
+      "inference_seconds": {
+        "count": 122,
+        "total": 98.728,
+        "mean": 0.809,
+        "median": 0.793,
+        "max": 1.172
+      },
+      "audio_seconds": {
+        "count": 122,
+        "total": 175.82,
+        "mean": 1.441,
+        "median": 1.35,
+        "max": 2.36
+      },
+      "generated_tokens": 1093,
+      "attempts": 94,
+      "truncated": 0,
+      "cancelled": 28,
+      "measured_inference": 122,
+      "outcomes": {
+        "cancelled": 28,
+        "partial": 92,
+        "stale_after_commit": 2
+      },
+      "inference_share_percent": 52.5
+    },
+    "final": {
+      "wall_seconds": {
+        "count": 61,
+        "total": 90.838,
+        "mean": 1.489,
+        "median": 1.478,
+        "max": 1.643
+      },
+      "inference_seconds": {
+        "count": 61,
+        "total": 89.379,
+        "mean": 1.465,
+        "median": 1.453,
+        "max": 1.639
+      },
+      "audio_seconds": {
+        "count": 61,
+        "total": 211.98,
+        "mean": 3.475,
+        "median": 3.38,
+        "max": 3.98
+      },
+      "generated_tokens": 1781,
+      "attempts": 61,
+      "truncated": 0,
+      "cancelled": 0,
+      "measured_inference": 61,
+      "outcomes": {
+        "final": 61
+      },
+      "inference_share_percent": 47.5
+    }
+  },
+  "final_redundancy": {
+    "commits": 61,
+    "matched_complete_partial": 0,
+    "matched_percent": 0.0,
+    "redundant_final_inference_seconds": 0,
+    "redundant_finals": 0
+  },
+  "promotion": {
+    "commits": 61,
+    "promoted_inflight": 0,
+    "promoted_percent": 0.0,
+    "gap_seconds": {
+      "count": 0,
+      "total": 0.0,
+      "mean": 0.0,
+      "median": 0.0,
+      "max": 0.0
+    },
+    "refused_inflight": 30,
+    "refused_gap_seconds": {
+      "count": 30,
+      "total": 17.2,
+      "mean": 0.573,
+      "median": 0.56,
+      "max": 0.74
+    }
+  },
+  "partials_per_utterance": {
+    "submitted": {
+      "count": 61,
+      "total": 122.0,
+      "mean": 2.0,
+      "median": 2.0,
+      "max": 2.0
+    },
+    "completed": {
+      "count": 61,
+      "total": 92.0,
+      "mean": 1.508,
+      "median": 2.0,
+      "max": 2.0
+    }
+  },
+  "commit_reasons": {
+    "silero_end": 61
+  },
+  "session_id": "ed1977f6-580b-462a-b118-acb14d33d8dd"
+}
