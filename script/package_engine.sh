@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-BUNDLE="${1:-$ROOT/dist/LiveTR3.app}"
+BUNDLE="${1:-$ROOT/dist/GLM2Scribe.app}"
 ENGINE_DIR="$BUNDLE/Contents/Resources/Engine"
 BACKEND_DIR="$ENGINE_DIR/backend"
 

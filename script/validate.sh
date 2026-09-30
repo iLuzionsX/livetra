@@ -14,7 +14,7 @@ swift test
 echo "==> Native Swift release build"
 swift build -c release
 
-echo "==> LiveTR3 deterministic validation passed"
+echo "==> GLM2Scribe deterministic validation passed"
 
 if [[ "${LIVETR3_RUN_SOAK:-0}" == "1" ]]; then
   echo "==> Running 5-minute MLX soak on this Mac"

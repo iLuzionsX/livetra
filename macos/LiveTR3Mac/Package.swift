@@ -8,7 +8,7 @@ let package = Package(
         .macOS(.v14)
     ],
     products: [
-        .executable(name: "LiveTR3", targets: ["LiveTR3Mac"])
+        .executable(name: "GLM2Scribe", targets: ["LiveTR3Mac"])
     ],
     targets: [
         .executableTarget(

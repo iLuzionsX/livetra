@@ -28,7 +28,7 @@ struct SidebarView: View {
             }
         }
         .listStyle(.sidebar)
-        .navigationTitle("LiveTR3")
+        .navigationTitle("GLM2Scribe")
     }
 }
 

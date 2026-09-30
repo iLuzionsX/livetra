@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-APP_NAME="LiveTR3"
+APP_NAME="GLM2Scribe"
 PACKAGE_DIR="$ROOT/macos/LiveTR3Mac"
 BUNDLE="$ROOT/dist/$APP_NAME.app"
 APP_ICON="$PACKAGE_DIR/Resources/AppIcon.icns"
@@ -31,7 +31,7 @@ cat > "$BUNDLE/Contents/Info.plist" <<PLIST
   <key>CFBundleExecutable</key>
   <string>$APP_NAME</string>
   <key>CFBundleIdentifier</key>
-  <string>com.livetr3.mac</string>
+  <string>com.glm2scribe.mac</string>
   <key>CFBundleName</key>
   <string>$APP_NAME</string>
   <key>CFBundleIconFile</key>
@@ -41,7 +41,7 @@ cat > "$BUNDLE/Contents/Info.plist" <<PLIST
   <key>LSMinimumSystemVersion</key>
   <string>14.0</string>
   <key>NSMicrophoneUsageDescription</key>
-  <string>LiveTR3 captures microphone audio for local transcription and translation.</string>
+  <string>GLM2Scribe captures microphone audio for local transcription and translation.</string>
   <key>NSPrincipalClass</key>
   <string>NSApplication</string>
 </dict>

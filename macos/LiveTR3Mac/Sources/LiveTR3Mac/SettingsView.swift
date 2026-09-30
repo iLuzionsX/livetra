@@ -9,7 +9,7 @@ struct SettingsView: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text("Settings")
                     .font(.title2.weight(.semibold))
-                Text("Configure how the local caption engine starts and how much system detail LiveTR3 shows.")
+                Text("Configure how the local caption engine starts and how much system detail GLM2Scribe shows.")
                     .font(.callout)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
@@ -20,7 +20,7 @@ struct SettingsView: View {
                     Toggle(isOn: $startsRuntimeAutomatically) {
                         SettingLabel(
                             title: "Start Local Engine",
-                            detail: "Launch the local caption engine when LiveTR3 opens."
+                            detail: "Launch the local caption engine when GLM2Scribe opens."
                         )
                     }
                 } header: {

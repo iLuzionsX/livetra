@@ -62,4 +62,4 @@ case "$mode" in
     ;;
 esac
 
-echo "LiveTR3 known-good validation passed: $mode"
+echo "GLM2Scribe known-good validation passed: $mode"
